@@ -1,6 +1,6 @@
 /**
  * @autor -  Lucas Henrique de Abreu - <lucasigual14@gmail.com>
- * Modulo : Módulo de components.
+ * Modulo : Módulo de controllers.
  * data: 18/01/2017
  */
 (function(angular) {
