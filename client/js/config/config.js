@@ -24,6 +24,18 @@
 			templateUrl: 'partials/home.html',
 			controller: 'HomeController',
 			controllerAs: 'ctrl'
+		}).when('/familia', {
+			templateUrl: 'partials/familia.html',
+			controller: 'FamiliaController',
+			controllerAs: 'ctrl'
+		}).when('/automoveis', {
+			templateUrl: 'partials/automoveis.html',
+			controller: 'AutomoveisController',
+			controllerAs: 'ctrl'
+		}).when('/viagens', {
+			templateUrl: 'partials/viagens.html',
+			controller: 'ViagensController',
+			controllerAs: 'ctrl'
 		}).otherwise({
 			redirectTo: '/crud'
 		});

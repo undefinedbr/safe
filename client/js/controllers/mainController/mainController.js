@@ -13,9 +13,19 @@
 			
 			self.mainMenuItems = [
 				{
-					label: "Teste",
-					location: "home",
-					icon: 'mode_edit',
+					label: "Família",
+					location: "familia",
+					icon: 'favorite',
+				}, 
+				{
+					label: "Automóveis",
+					location: "automoveis",
+					icon: 'directions_car',
+				}, 
+				{
+					label: "Viagens",
+					location: "viagens",
+					icon: 'card_travel',
 				}
 			];
 		}
