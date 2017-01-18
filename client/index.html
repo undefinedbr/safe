@@ -1,0 +1,95 @@
+<!DOCTYPE HTML>
+<html ng-app="app">
+
+<head>
+		<title>Safe</title>
+		<meta charset="UTF-8">
+		<meta http-equiv="x-ua-compatible" content="IE=edge"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+		<meta name="apple-mobile-web-app-capable" content="yes">
+		<meta name="apple-touch-fullscreen" content="yes">
+
+		<link rel="icon" type="image/png" href=""/>
+		<link rel="stylesheet" href="css/app.css">
+		<link rel="stylesheet" href="bower_components/angular-material/angular-material.min.css">
+		<link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+</head>
+
+<body ng-controller="MainController as ctrl">
+	<div ng-if="!ctrl.bloqUser">
+			<md-sidenav class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-component-id="left">
+					<md-toolbar class="md-tall md-hue-2" layout-align="end end">
+							<div class="md-toolbar-tools" layout layout-padding>
+								<div>
+									<img ng-src="{{ctrl.user.foto}}" class="md-avatar" alt="{{ctrl.user.usuario}}" />
+								</div>
+								<div style="cursor: pointer;" ng-click="ctrl.gotoSection('profile')" layout="column">
+										<span class="md-title">{{ctrl.user.usuario}}</span>
+										<span class="md-subhead">{{ctrl.user.email}}</span>
+								</div>
+							</div>
+					</md-toolbar>
+					<md-content role="navigation">
+							<md-list-item ng-repeat="item in ctrl.mainMenuItems" ng-if="item.show" ng-click="ctrl.gotoSection(item.location)">
+									<md-icon>{{item.icon}}</md-icon>
+									<p class="md-body-2">{{item.label}}</p>
+									<span flex></span>
+									<md-icon>chevron_right</md-icon>
+							</md-list-item>
+					</md-content>
+			</md-sidenav>
+			<section layout="column" role="main" flex>
+					<md-toolbar md-scroll-shrink role="toolbar">
+							<div class="md-toolbar-tools">
+									<md-button class="md-icon-button" ng-click="ctrl.toggleSidenav('left')" aria-label="Menu">
+											<md-icon>menu</md-icon>
+											<md-tooltip>
+													Abrir menu
+											</md-tooltip>
+									</md-button> 
+									<h4 hide-xs class="md-title">Safe</h4>
+									<span flex></span>
+							</div>
+					</md-toolbar>
+					<section id="content" role="content" layout="column" layout-padding md-scroll-y>
+							<div class="top-bg md-accent-bg"></div>
+							<md-content class="mainContent" ng-cloak>
+									<ng-view></ng-view>
+							</md-content>
+					</section>
+			</section>
+	</div>
+<script src="bower_components/angular/angular.min.js"></script>
+<script src="bower_components/angular-animate/angular-animate.min.js"></script>
+<script src="bower_components/angular-aria/angular-aria.min.js"></script>
+<script src="bower_components/angular-route/angular-route.min.js"></script>
+<script src="bower_components/angular-messages/angular-messages.min.js"></script>
+<script src="bower_components/angular-material/angular-material.js"></script>
+
+<script src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
+
+<script src="js/app.js"></script>
+<script src="js/components/components.js"></script>
+<script src="js/controllers/controllers.js"></script>
+<script src="js/directives/directives.js"></script>
+<script src="js/config/configs.js"></script>
+<script src="js/services/services.js"></script>
+
+<!-- Controllers -->
+<script src="js/controllers/mainController/mainController.js"></script>
+
+<!-- Services -->
+<script src="js/services/generalServices/generalServices.js"></script>
+
+<!-- Direcives -->
+<script src="js/directives/pivotTable/pivotTable.js"></script>
+<script src="js/directives/amcharts-angular/amChartsDirective.js"></script>
+<script src="js/directives/widgetTotal/widgetTotal.js"></script>
+<script src="js/directives/tableAndChart/tableAndChart.js"></script>
+<script src="bower_components/angular-material-data-table/dist/md-data-table.min.js"></script>
+<script src="js/directives/totalFilter/totalFilter.js"></script>
+<script src="js/directives/setFocus.js"></script>
+
+
+</body>
+</html>
