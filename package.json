@@ -1,0 +1,11 @@
+{
+	"name": "app",
+	"version": "0.1.0",
+	"description": "Servidor",
+	"dependencies": {
+		"express": "latest",
+		"mongoose": "latest",
+    	"body-parser": "~1.9.2"
+	},
+	"author": "Joisson Mello"
+}
