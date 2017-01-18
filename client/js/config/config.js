@@ -16,7 +16,7 @@
 			var m = moment(dateString, 'DD/MM/YYYY', true);
 			return m.isValid() ? m.toDate() : new Date(NaN);
 		};
-		$mdThemingProvider.theme('default').primaryPalette('teal');
+		$mdThemingProvider.theme('default').primaryPalette('red');
 		$mdAriaProvider.disableWarnings();
 	})
 	.config(['$routeProvider', function (routeProvider) {

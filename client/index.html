@@ -21,16 +21,16 @@
 					<md-toolbar class="md-tall md-hue-2" layout-align="end end">
 							<div class="md-toolbar-tools" layout layout-padding>
 								<div>
-									<img ng-src="{{ctrl.user.foto}}" class="md-avatar" alt="{{ctrl.user.usuario}}" />
+									<img ng-src="http://lh3.googleusercontent.com/-CBGFkaljF2o/AAAAAAAAAAI/AAAAAAAAABY/iM3Ab1yPvGQ/photo.jpg?sz=800" class="md-avatar" alt="{{ctrl.user.usuario}}" />
 								</div>
 								<div style="cursor: pointer;" ng-click="ctrl.gotoSection('profile')" layout="column">
-										<span class="md-title">{{ctrl.user.usuario}}</span>
-										<span class="md-subhead">{{ctrl.user.email}}</span>
+										<span class="md-title">Usuário teste</span>
+										<span class="md-subhead">teste@undefined.com</span>
 								</div>
 							</div>
 					</md-toolbar>
 					<md-content role="navigation">
-							<md-list-item ng-repeat="item in ctrl.mainMenuItems" ng-if="item.show" ng-click="ctrl.gotoSection(item.location)">
+							<md-list-item ng-repeat="item in ctrl.mainMenuItems" ng-click="ctrl.gotoSection(item.location)">
 									<md-icon>{{item.icon}}</md-icon>
 									<p class="md-body-2">{{item.label}}</p>
 									<span flex></span>
@@ -76,7 +76,7 @@
 <script src="js/services/services.js"></script>
 
 <!-- Controllers -->
-
+<script src="js/controllers/mainController/mainController.js"></script>
 <!-- Services -->
 
 <!-- Direcives -->
