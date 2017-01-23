@@ -102,8 +102,6 @@
 		<div flex="5" hide-xs hide-sm>
 			<!-- Spacer //-->
 		</div>
-				sexo:'M',
-		peso:'75'
 
 		<md-input-container class="md-block" flex-gt-sm>
 			<label>Sexo</label>
@@ -121,11 +119,11 @@
 		</div>
 
 		<md-input-container class="md-block" flex-gt-sm>
-			<label>Altura</label>
-			<input name="altura" ng-model="ctrl.pessoa.altura" required/>
+			<label>Peso</label>
+			<input name="peso" ng-model="ctrl.pessoa.peso" required/>
 
-			<div ng-messages="formCadastro.altura.$error">
-				<div ng-message="required">altura é necessário.</div>
+			<div ng-messages="formCadastro.peso.$error">
+				<div ng-message="required">peso é necessário.</div>
 			</div>
 		</md-input-container>
 	</div>

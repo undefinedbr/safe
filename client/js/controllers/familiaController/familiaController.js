@@ -6,10 +6,12 @@
 (function (angular) {
 	'use strict';
 	var FamiliaController = (function () {
-		function FamiliaController($location, $mdDialog) {
+		function FamiliaController($location, $mdDialog,dialogService,showToast, $scope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
 			self.familia 			= self.getFamilia();
+			self.dialogService 		= dialogService;
+			self.$scope				= $scope;
 		}
 
 		/**
@@ -90,28 +92,24 @@
 
 		FamiliaController.prototype.showDialog = function(ev, pessoa) {
 			var self = this;
-			self.$mdDialog.show({
-				controller: 'FamiliaDialogController as ctrl',
-				templateUrl: 'partials/dialog/familia.html',
-				parent: angular.element(document.body),
-				locals: {
-					pessoa: pessoa
-				},
-				targetEvent: ev,
-				clickOutsideToClose:true,
-				fullscreen: true
-			})
-			.then(function(response) {
-				console.log(response)
-			}, function() {
-				//self.callback();
-			});
+			self.dialogService.openDialog(
+				'partials/dialog/familia.html', 'FamiliaDialogController',
+				(function(pessoa){
+					self.familia.push(pessoa);
+					self.showToast.showSimpleToast('Alterações cadastrados com sucesso.', '');
+				}), ev, pessoa, 
+				self.$scope
+			)
 		};
 
 		FamiliaController.$inject = [
 			'$location',
-			'$mdDialog'
+			'$mdDialog',
+			'dialogService',
+			'showToast',
+			'$scope'
 		];
+
 		return FamiliaController;
 	}());
 
