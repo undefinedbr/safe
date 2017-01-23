@@ -6,9 +6,10 @@
 (function (angular) {
 	'use strict';
 	var FamiliaController = (function () {
-		function FamiliaController($location) {
+		function FamiliaController($location, $mdDialog) {
 			var self 				= this;
-			self.familia = self.getFamilia();
+			self.$mdDialog 			= $mdDialog;
+			self.familia 			= self.getFamilia();
 		}
 
 		/**
@@ -85,10 +86,31 @@
 					peso:'75'
 				}
 			]
-		}
+		};
+
+		FamiliaController.prototype.showDialog = function(ev, pessoa) {
+			var self = this;
+			self.$mdDialog.show({
+				controller: 'FamiliaDialogController as ctrl',
+				templateUrl: 'partials/dialog/familia.html',
+				parent: angular.element(document.body),
+				locals: {
+					pessoa: pessoa
+				},
+				targetEvent: ev,
+				clickOutsideToClose:true,
+				fullscreen: true
+			})
+			.then(function(response) {
+				console.log(response)
+			}, function() {
+				//self.callback();
+			});
+		};
 
 		FamiliaController.$inject = [
 			'$location',
+			'$mdDialog'
 		];
 		return FamiliaController;
 	}());

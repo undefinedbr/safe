@@ -1,0 +1,145 @@
+<md-dialog aria-label="Mango (Fruit)">
+	<form ng-cloak name="formCadastro">
+	<md-toolbar>
+		<div class="md-toolbar-tools">
+			<h2>Cadastro de pessoa</h2>
+			<span flex></span>
+			<md-button class="md-icon-button" ng-click="ctrl.cancel()">
+				<md-icon aria-label="Fechar janela">close</md-icon>
+			</md-button>
+		</div>
+	</md-toolbar>
+
+	<md-dialog-content>
+	<div layout-gt-sm="row" layout-padding>
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Nome</label>
+			<input md-maxlength="30" required name="nome" ng-model="ctrl.pessoa.nome" />
+
+			<div class="hint">Informe o nome</div>
+
+			<div ng-messages="formCadastro.nome.$error">
+				<div ng-message="required">Nome é necessário.</div>
+				<div ng-message="md-maxlength">Deve ter no máximo 30 caracteres.</div>
+			</div>
+		</md-input-container>
+
+		<div flex="5" hide-xs hide-sm>
+			<!-- Spacer //-->
+		</div>
+
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Posição na familia</label>
+			<input md-maxlength="30" required name="posicaofamilia" ng-model="ctrl.pessoa.posicaofamilia" />
+
+			<div class="hint">Informe a posição familiar</div>
+
+			<div ng-messages="formCadastro.posicaofamilia.$error">
+				<div ng-message="required">Informe a poisição na familia.</div>
+				<div ng-message="md-maxlength">Deve ter no máximo 30 caracteres.</div>
+			</div>
+		</md-input-container>
+
+	</div>
+
+	<div layout-gt-sm="row">
+
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Tipo sanguineo</label>
+			<input name="tiposanguineo" ng-model="ctrl.pessoa.tiposanguineo"
+						 required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+			<div class="hint">informe o tipo sanguineo</div>
+
+			<div ng-messages="formCadastro.tiposanguineo.$error">
+				<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+					Deve ter no máximo 30 caracteres.
+				</div>
+			</div>
+		</md-input-container>
+
+		<div flex="5" hide-xs hide-sm>
+			<!-- Spacer //-->
+		</div>
+
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>CPF</label>
+			<input name="cpf" ng-model="ctrl.pessoa.cpf" required/>
+
+			<div ng-messages="formCadastro.cpf.$error">
+				<div ng-message="required">CPF é necessário.</div>
+			</div>
+		</md-input-container>
+	</div>
+
+	<div layout-gt-sm="row">
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Idade</label>
+			<input type="number" name="idade" ng-model="ctrl.pessoa.idade"
+						 required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+
+			<div ng-messages="formCadastro.idade.$error">
+				<div ng-message-exp="['required', 'minlength', 'maxlength', 'pattern']">
+					Deve ter no máximo 30 caracteres.
+				</div>
+			</div>
+		</md-input-container>
+
+		<div flex="5" hide-xs hide-sm>
+			<!-- Spacer //-->
+		</div>
+
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Altura</label>
+			<input name="altura" ng-model="ctrl.pessoa.altura" required/>
+
+			<div ng-messages="formCadastro.altura.$error">
+				<div ng-message="required">altura é necessário.</div>
+			</div>
+		</md-input-container>
+
+		<div flex="5" hide-xs hide-sm>
+			<!-- Spacer //-->
+		</div>
+				sexo:'M',
+		peso:'75'
+
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Sexo</label>
+			<input type="number" name="sexo" ng-model="ctrl.pessoa.sexo"
+						 required minlength="10" maxlength="100" ng-pattern="/^.+@.+\..+$/" />
+
+
+			<div ng-messages="formCadastro.sexo.$error">
+				<div ng-message="required">é necessário informar sexo.</div>
+			</div>
+		</md-input-container>
+
+		<div flex="5" hide-xs hide-sm>
+			<!-- Spacer //-->
+		</div>
+
+		<md-input-container class="md-block" flex-gt-sm>
+			<label>Altura</label>
+			<input name="altura" ng-model="ctrl.pessoa.altura" required/>
+
+			<div ng-messages="formCadastro.altura.$error">
+				<div ng-message="required">altura é necessário.</div>
+			</div>
+		</md-input-container>
+	</div>
+
+	</md-dialog-content>
+
+	<md-dialog-actions layout="row">
+		<span flex></span>
+		<md-button ng-click="ctrl.cancel()">
+			Cancelar
+		</md-button>
+		<md-button ng-click="ctrl.save(ctrl.pessoa)">
+			Savlar
+		</md-button>
+	</md-dialog-actions>
+	</form>
+</md-dialog>

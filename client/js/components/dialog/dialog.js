@@ -1,39 +1,50 @@
-$scope.showAdvanced = function(ev) {
-    $mdDialog.show({
-      controller: DialogController,
-      templateUrl: 'dialog1.tmpl.html',
-      parent: angular.element(document.body),
-      targetEvent: ev,
-      clickOutsideToClose:true,
-      fullscreen: $scope.customFullscreen // Only for -xs, -sm breakpoints.
-    })
-    .then(function(answer) {
-      $scope.status = 'You said the information was "' + answer + '".';
-    }, function() {
-      $scope.status = 'You cancelled the dialog.';
-    });
-  };
-
 /**
  * @autor -  Lucas Henrique de Abreu - <lucasigual14@gmail.com>
- * Controller: DialogComponent, responsável por criar os dialogs de acordo com as configurações passadas por paramtro.
+ * Controller: DialogComponentController, responsável por criar os dialogs de acordo com as configurações passadas por paramtro.
  * data: 18/01/2017
  */
 (function (angular) {
-  'use strict';
-  var DialogComponent = (function () {
-    function DialogComponent($location) {
-      var self        = this;
-      self.familia = self.getFamilia();
-    }
+	'use strict';
+	var DialogComponentController = (function () {
+		function DialogComponentController($location,$mdDialog) {
+			var self        = this;
+			self.$mdDialog 	= $mdDialog;
+			self.familia 	= self.getFamilia();
+		}
+
+	DialogComponentController.prototype.showAdvanced = function() {
+		var self = this;
+		self.$mdDialog.show({
+			controller: self.controller,
+			templateUrl: self.template,
+			parent: angular.element(document.body),
+			targetEvent: self.event,
+			clickOutsideToClose:true,
+			fullscreen: self.customFullscreen // Only for -xs, -sm breakpoints.
+		})
+		.then(function(response) {
+			self.callback(response)
+		}, function() {
+			self.callback();
+		});
+	};
 
 
-    DialogComponent.$inject = [
-      '$location',
-    ];
-    return DialogComponent;
-  }());
+		DialogComponentController.$inject = [
+			'$location',
+			'$mdDialog'
+		];
+		return DialogComponentController;
+	}());
 
-  angular.module('app.controllers').controller('DialogComponent', DialogComponent);
+	angular.module('app.controllers').controller('DialogComponent', {
+		bindings: {
+				template: '='
+				controller: '=',
+				event:'='
+				callback:'='
+		},
+		controller: DialogComponentController
+	});
 
 })(window.angular);

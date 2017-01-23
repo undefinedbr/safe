@@ -4,7 +4,7 @@
 		<section class="back-fff">
 			<md-subheader class="md-primary">Familiares</md-subheader>
 			<md-list layout-padding>
-				<md-list-item class="md-3-line" ng-repeat="item in ctrl.familia" ng-click="null">
+				<md-list-item class="md-3-line" ng-repeat="item in ctrl.familia" ng-click="ctrl.showDialog($event, item)">
 					<img ng-src="{{item.foto}}" class="md-avatar" alt="{{item.nome}}">
 					<div class="md-list-item-text">
 						<h3>{{item.nome}}</h3>
@@ -24,7 +24,7 @@
 		<section class="back-fff">
 			<md-subheader class="md-warn">Amigos/Caroneiros</md-subheader>
 			<md-list layout="column" layout-padding>
-				<md-list-item class="md-3-line" ng-repeat="item in ctrl.familia" ng-click="null">
+				<md-list-item class="md-3-line" ng-repeat="item in ctrl.familia" ng-click="ctrl.showDialog($event, item)">
 					<img ng-src="{{item.foto}}" class="md-avatar" alt="{{item.nome}}">
 					<div class="md-list-item-text">
 						<h3>{{item.nome}}</h3>
