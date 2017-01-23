@@ -28,6 +28,7 @@
 			'$mdDialog',
 			'locals'
 		];
+		
 		return FamiliaDialogController;
 	}());
 
