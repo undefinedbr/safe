@@ -21,11 +21,11 @@
 					<md-toolbar class="md-tall md-hue-2" layout-align="end end">
 							<div class="md-toolbar-tools" layout layout-padding>
 								<div>
-									<img ng-src="http://lh3.googleusercontent.com/-CBGFkaljF2o/AAAAAAAAAAI/AAAAAAAAABY/iM3Ab1yPvGQ/photo.jpg?sz=800" class="md-avatar" alt="{{ctrl.user.usuario}}" />
+									<img ng-src="{{ctrl.user.foto}}" class="md-avatar" alt="{{ctrl.user.foto}}" />
 								</div>
 								<div style="cursor: pointer;" ng-click="ctrl.gotoSection('profile')" layout="column">
-										<span class="md-title">Usuário teste</span>
-										<span class="md-subhead">teste@undefined.com</span>
+										<span class="md-title">{{ctrl.user.nome}}</span>
+										<span class="md-subhead">{{ctrl.user.email}}</span>
 								</div>
 							</div>
 					</md-toolbar>
@@ -49,10 +49,16 @@
 									</md-button> 
 									<h4 hide-xs class="md-title">Safe</h4>
 									<span flex></span>
+									<md-button class="md-icon-button" ng-click="null" aria-label="pesquisa">
+											<md-icon>search</md-icon>
+											<md-tooltip>
+													Abrir pesquisa
+											</md-tooltip>
+									</md-button> 
 							</div>
 					</md-toolbar>
 					<section id="content" role="content" layout="column" md-scroll-y>
-							<div class="top-bg md-accent-bg"></div>
+							<!--<div class="top-bg md-accent-bg"></div>-->
 							<md-content class="mainContent" ng-cloak>
 									<ng-view></ng-view>
 							</md-content>

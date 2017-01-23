@@ -28,6 +28,19 @@
 					icon: 'card_travel',
 				}
 			];
+
+			self.user = self.getUserLogger();
+		}
+
+		/**
+		 * Busca o usuário logado.
+		 **/
+		MainController.prototype.getUserLogger = function() {
+			return {
+				nome:'Usuário teste',
+				email: 'lucasteste@teste.com',
+				foto:'img/60.png'
+			}
 		}
 
 		MainController.prototype.toggleSidenav = function (menu) {

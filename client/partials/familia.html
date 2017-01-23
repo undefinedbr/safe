@@ -1,1 +1,45 @@
-<h1>Família</h1>
+<div layout="column" flex layout-fill ng-cloak>
+	<md-content style="max-height: 90vh;" md-theme="altTheme">
+
+		<section class="back-fff">
+			<md-subheader class="md-primary">Familiares</md-subheader>
+			<md-list layout-padding>
+				<md-list-item class="md-3-line" ng-repeat="item in ctrl.familia" ng-click="null">
+					<img ng-src="{{item.foto}}" class="md-avatar" alt="{{item.nome}}">
+					<div class="md-list-item-text">
+						<h3>{{item.nome}}</h3>
+						<h4>{{item.posicaoFamilia}}</h4>
+						<p>
+							Idade: {{item.idade}}
+							Tipo sanguineo: {{item.tiposanguineo}}
+							Altura: {{item.altura}}
+							Sexo: {{item.sexo}}
+							Peso: {{item.peso}}
+						</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</section>
+
+		<section class="back-fff">
+			<md-subheader class="md-warn">Amigos/Caroneiros</md-subheader>
+			<md-list layout="column" layout-padding>
+				<md-list-item class="md-3-line" ng-repeat="item in ctrl.familia" ng-click="null">
+					<img ng-src="{{item.foto}}" class="md-avatar" alt="{{item.nome}}">
+					<div class="md-list-item-text">
+						<h3>{{item.nome}}</h3>
+						<h4>{{item.posicaoFamilia}}</h4>
+						<p>
+							Idade: {{item.idade}}
+							Tipo sanguineo: {{item.tiposanguineo}}
+							Altura: {{item.altura}}
+							Sexo: {{item.sexo}}
+							Peso: {{item.peso}}
+						</p>
+					</div>
+				</md-list-item>
+			</md-list>
+		</section>
+
+	</md-content>
+</div>
