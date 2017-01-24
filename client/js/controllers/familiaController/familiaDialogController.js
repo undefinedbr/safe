@@ -9,7 +9,7 @@
 		function FamiliaDialogController($mdDialog, locals) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
-			self.pessoa				= locals.pessoa;
+			self.pessoa				= locals ? locals.pessoa : {};
 		}
 
 		FamiliaDialogController.prototype.hide = function() {

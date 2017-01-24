@@ -306,3 +306,8 @@ md-dialog .md-dialog-content {
 .back-fff {
 	background-color: #fff;
 }
+.btn-bottom {
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+}
