@@ -7,6 +7,25 @@
 	'use strict';
 
 	var HttpService = (function () {
+<<<<<<< HEAD
+		function HttpService($http,$cookies) {
+			var self = this;
+			self.$http = $http;
+			self.$cookies = $cookies;
+			self.contextPath = "http://localhost:9000/api/";
+			//Debug
+			//self.contextPath = "http://localhost:8080/api/";
+		};
+
+		HttpService.prototype.get = function (url) {
+			var self = this;
+			return self.$http({
+				method: 'GET',
+				url: self.contextPath + url,
+				headers: {
+                    "X-Auth-Token": self.$cookies.get('X-Auth-Token')
+                }
+=======
 		function HttpService($http, $httpParamSerializer) {
 			this.$http = $http;
 			this.$httpParamSerializer = $httpParamSerializer;
@@ -16,23 +35,51 @@
 			return this.$http({
 				method: 'GET',
 				url: url
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			});
 		};
 
 		HttpService.prototype.post = function (obj, url) {
+<<<<<<< HEAD
+			var self = this;
+			return self.$http({
+				method: 'POST',
+				url: self.contextPath + url,
+				data: JSON.stringify(obj),
+				headers: {
+                    "X-Auth-Token": self.$cookies.get('X-Auth-Token')
+                }
+			});
+		};
+
+		HttpService.prototype.delete = function (url, obj) {
+			var self = this;
+			return self.$http({
+				method: 'DELETE',
+				url: self.contextPath + url,
+				data: JSON.stringify(obj),
+				contentType: "application/json",
+				headers: {
+					"X-Auth-Token": self.$cookies.get('X-Auth-Token')
+=======
 			return this.$http({
 				method: 'POST',
 				url: url,
 				data: this.$httpParamSerializer(obj),
 				headers: {
 					'Content-Type': 'application/x-www-form-urlencoded'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				}
 			});
 		};
 
 		HttpService.$inject = [
 			'$http',
+<<<<<<< HEAD
+			'$cookies'
+=======
 			'$httpParamSerializer'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		];
 
 		return HttpService;
@@ -114,6 +161,14 @@
 	}());
 
 	var DialogService = (function () {
+<<<<<<< HEAD
+		function DialogService($mdDialog) {
+			this.$mdDialog = $mdDialog;
+		};
+
+		DialogService.prototype.openDialog = function (templateUrl, controller, callBack, ev, parameter, scope) {
+			var self = this;
+=======
 		function DialogService($mdDialog,$mdMedia) {
 			this.$mdDialog = $mdDialog;
 			this.$mdMedia = $mdMedia;
@@ -122,6 +177,7 @@
 		DialogService.prototype.openDialog = function (templateUrl, controller, callBack, ev, parameter, scope) {
 			var useFullScreen = (this.$mdMedia('sm') || this.$mdMedia('xs')) && this.customFullscreen,
 				self = this;
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			self.$mdDialog.show({
 				templateUrl: templateUrl,
 				controller:  controller,
@@ -130,6 +186,13 @@
 				targetEvent: ev,
 				locals:  parameter,
 				clickOutsideToClose: true,
+<<<<<<< HEAD
+				fullscreen: true
+			}).then(function(response) {
+				callBack(response);
+			}, function() {
+				console.log('cancelado');
+=======
 				fullscreen: useFullScreen
 			}).then(function (response) {
 				callBack(response);
@@ -138,12 +201,17 @@
 				return self.$mdMedia('xs') || self.$mdMedia('sm');
 			}, function (wantsFullScreen) {
 				self.customFullscreen = (wantsFullScreen === true);
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			});
 		};
 
 		DialogService.$inject = [
+<<<<<<< HEAD
+			'$mdDialog'
+=======
 			'$mdDialog',
 			'$mdMedia'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		];
 
 		return DialogService;

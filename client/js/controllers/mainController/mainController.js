@@ -6,10 +6,20 @@
 (function (angular) {
 	'use strict';
 	var MainController = (function () {
+<<<<<<< HEAD
+		function MainController($mdSidenav, $location, $scope) {
+			var self 				= this;
+			self.$mdSidenav 		= $mdSidenav;
+			self.$location  		= $location;
+			$scope.$on('userLogged', function(ev, user) {
+				self.userLogged	= user;
+			});
+=======
 		function MainController($mdSidenav, $location) {
 			var self 				= this;
 			self.$mdSidenav 		= $mdSidenav;
 			self.$location  		= $location;
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			
 			self.mainMenuItems = [
 				{
@@ -28,6 +38,8 @@
 					icon: 'card_travel',
 				}
 			];
+<<<<<<< HEAD
+=======
 
 			self.user = self.getUserLogger();
 		}
@@ -41,6 +53,7 @@
 				email: 'lucasteste@teste.com',
 				foto:'img/60.png'
 			}
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		}
 
 		MainController.prototype.toggleSidenav = function (menu) {
@@ -56,6 +69,10 @@
 		MainController.$inject = [
 			'$mdSidenav',
 			'$location',
+<<<<<<< HEAD
+			'$scope'
+=======
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		];
 		return MainController;
 	}());

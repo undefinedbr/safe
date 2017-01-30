@@ -1,6 +1,5 @@
 node_modules
-.tmp
 .idea
-bower_components
-dist
+/server/config/local.env.js
 npm-debug.log
+/client/bower_components
