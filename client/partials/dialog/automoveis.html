@@ -1,0 +1,91 @@
+<md-dialog aria-label="Cadastro de automoveis">
+	<form ng-cloak name="formCadastro">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Cadastro de automóveis</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="ctrl.cancel()">
+					<md-icon aria-label="Fechar janela">close</md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content>
+		<div layout-gt-sm="row" layout-padding>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Modelo</label>
+				<input md-maxlength="30" required name="modelo" ng-model="ctrl.automovel.modelo" />
+
+				<div ng-messages="formCadastro.modelo.$error">
+					<div ng-message="required">Modelo é necessário.</div>
+				</div>
+			</md-input-container>
+
+			<div flex="5" hide-xs hide-sm>
+				<!-- Spacer //-->
+			</div>
+
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Placa</label>
+				<input md-maxlength="30" required name="placa" ng-model="ctrl.automovel.placa" />
+
+				<div ng-messages="formCadastro.placa.$error">
+					<div ng-message="required">Informe a placa.</div>
+				</div>
+			</md-input-container>
+
+		</div>
+
+		<div layout-gt-sm="row" layout-padding>
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Cor</label>
+				<input name="cor" ng-model="ctrl.automovel.cor"
+							 required/>
+
+				<div ng-messages="formCadastro.cor.$error">
+					<div ng-message-exp="required">
+						Cor deve ser informado.
+					</div>
+				</div>
+			</md-input-container>
+
+			<div flex="5" hide-xs hide-sm>
+				<!-- Spacer //-->
+			</div>
+
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Ano</label>
+				<input name="ano" ng-model="ctrl.automovel.ano" required/>
+
+				<div ng-messages="formCadastro.ano.$error">
+					<div ng-message="required">Ano é necessário.</div>
+				</div>
+			</md-input-container>
+
+			<div flex="5" hide-xs hide-sm>
+				<!-- Spacer //-->
+			</div>
+
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Cidade</label>
+				<input name="cidade" ng-model="ctrl.automovel.cidade" required/>
+
+				<div ng-messages="formCadastro.cidade.$error">
+					<div ng-message="required">Cidade é necessário.</div>
+				</div>
+			</md-input-container>
+		</div>
+
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button ng-click="ctrl.cancel()">
+				Cancelar
+			</md-button>
+			<md-button ng-disabled="formCadastro.$invalid" ng-click="ctrl.save(ctrl.automovel)">
+				Savlar
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

@@ -1,0 +1,125 @@
+<form ng-cloak name="formCadastro">
+	<div layout="column" flex layout-fill ng-cloak layout-align="center center">
+		<md-card layout-align="center center" layout-padding>
+			<img class="md-avatar" ng-src="{{ctrl.pessoa.foto}}" alt="Washed Out">
+			<md-card-title>
+				<md-card-title-text>
+					<span class="md-headline">Novo cadastro</span>
+				</md-card-title-text>
+			</md-card-title>
+			<md-card-content layout-align="end center">
+				<div layout-gt-sm="row" layout-padding>
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Nome</label>
+						<input md-maxlength="30" required name="nome" ng-model="ctrl.pessoa.nome" />
+
+						<div ng-messages="formCadastro.nome.$error">
+							<div ng-message="required">Nome é necessário.</div>
+						</div>
+					</md-input-container>
+
+					<div flex="5" hide-xs hide-sm>
+						<!-- Spacer //-->
+					</div>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Posição na familia</label>
+						<input md-maxlength="30" required name="posicaoFamilia" ng-model="ctrl.pessoa.posicaoFamilia" />
+
+						<div ng-messages="formCadastro.posicaoFamilia.$error">
+							<div ng-message="required">Informe a poisição na familia.</div>
+						</div>
+					</md-input-container>
+
+				</div>
+
+				<div layout-gt-sm="row" layout-padding>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Tipo sanguineo</label>
+						<input name="tiposanguineo" ng-model="ctrl.pessoa.tiposanguineo"
+									 required/>
+
+						<div ng-messages="formCadastro.tiposanguineo.$error">
+							<div ng-message-exp="required">
+								Tipo sanguineo deve ser informado.
+							</div>
+						</div>
+					</md-input-container>
+
+					<div flex="5" hide-xs hide-sm>
+						<!-- Spacer //-->
+					</div>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>CPF</label>
+						<input name="cpf" ng-model="ctrl.pessoa.cpf" required/>
+
+						<div ng-messages="formCadastro.cpf.$error">
+							<div ng-message="required">CPF é necessário.</div>
+						</div>
+					</md-input-container>
+				</div>
+
+				<div layout-gt-sm="row" layout-padding>
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Sexo</label>
+						<md-select ng-model="ctrl.pessoa.sexo">
+							<md-option ng-repeat="sexo in [{value:0, descricao:'MASCULINO'}, {value:1, descricao:'FEMININO'}]" 
+							ng-value="sexo.value">
+							{{sexo.descricao}}
+						</md-select>
+					</md-input-container>
+
+					<div flex="5" hide-xs hide-sm>
+						<!-- Spacer //-->
+					</div>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Altura</label>
+						<input name="altura" type="number"  step="0.01" ng-model="ctrl.pessoa.altura" required/>
+
+						<div ng-messages="formCadastro.altura.$error">
+							<div ng-message="required">altura é necessário.</div>
+						</div>
+					</md-input-container>
+
+					<div flex="5" hide-xs hide-sm>
+						<!-- Spacer //-->
+					</div>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Idade</label>
+						<input name="idade" type="number" ng-model="ctrl.pessoa.idade" required/>
+
+						<div ng-messages="formCadastro.idade.$error">
+							<div ng-message="required">idade é necessário.</div>
+						</div>
+					</md-input-container>
+
+					<div flex="5" hide-xs hide-sm>
+						<!-- Spacer //-->
+					</div>
+
+					<md-input-container class="md-block" flex-gt-sm>
+						<label>Peso</label>
+						<input name="peso" type="number"  step="0.01" ng-model="ctrl.pessoa.peso" required/>
+
+						<div ng-messages="formCadastro.peso.$error">
+							<div ng-message="required">peso é necessário.</div>
+						</div>
+					</md-input-container>
+				</div>	
+			</md-card-content>
+			<md-card-actions layout="row">
+				<span flex></span>
+				<md-button ng-click="ctrl.cancel()">
+					Cancelar
+				</md-button>
+				<md-button ng-disabled="formCadastro.$invalid" ng-click="ctrl.save(ctrl.pessoa)">
+					Salvar
+				</md-button>
+			</md-card-actions>
+		</md-card>
+	</div>
+</form>

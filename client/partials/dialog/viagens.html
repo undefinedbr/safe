@@ -1,0 +1,45 @@
+<md-dialog aria-label="Cadastro de automoveis">
+	<form ng-cloak name="formCadastro">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Cadastro de viagens</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="ctrl.cancel()">
+					<md-icon aria-label="Fechar janela">close</md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content>
+			<md-content layout="column" layout-padding>
+				<div layout="row">
+					<md-input-container>
+							<label>Direção</label>
+							<input ng-model="ctrl.addressInput" ng-model-options="{debounce: 1000}" ng-change="ctrl.buscaDirecao()" />
+					</md-input-container>
+					<md-input-container flex="99">
+							<label>Locais disponíveis</label>
+							<md-select ng-model="ctrl.selectedPlace" ng-disabled="ctrl.places.length < 2" ng-change="ctrl.centralizarLocal()">
+									<md-option ng-repeat="place in ctrl.places" value="{{place.place_id}}">{{place.formatted_address}}</md-option>
+							</md-select>
+					</md-input-container>
+					<md-button class="md-icon-button" ng-click="ctrl.apagarMarcadores()" ng-disabled="ctrl.markers.length === 0">
+							<md-icon aria-label="apagar">delete</md-icon>
+							<md-tooltip md-delay="1500" md-autohide="true">Apagar</md-tooltip>
+					</md-button>
+				</div>
+				<div id="map" style="height: 55vh;margin: 0px 10px 0px 10px;"></div>
+			</md-content>
+		</md-dialog-content>
+
+		<md-dialog-actions layout="row">
+			<span flex></span>
+			<md-button ng-click="ctrl.cancel()">
+				Cancelar
+			</md-button>
+			<md-button ng-disabled="formCadastro.$invalid" ng-click="ctrl.save(ctrl.viagem)">
+				Savlar
+			</md-button>
+		</md-dialog-actions>
+	</form>
+</md-dialog>

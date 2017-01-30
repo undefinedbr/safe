@@ -1,0 +1,33 @@
+<div layout="column" flex layout-fill ng-cloak layout-align="center center">
+	<md-card layout-align="center center" layout-padding>
+		<img class="md-avatar" ng-src="{{ctrl.user.foto}}" alt="Washed Out">
+		<md-card-title>
+			<md-card-title-text>
+				<span class="md-headline">Login</span>
+			</md-card-title-text>
+		</md-card-title>
+		<md-card-content layout-align="end center">
+			<md-input-container class="md-icon-float md-block">
+				<label>Name</label>
+				<md-icon>person</md-icon>
+				<input ng-model="ctrl.user.nome" type="text">
+			</md-input-container>
+
+			<md-input-container md-no-float class="md-block">
+				<label>Senha</label>
+				<md-icon>https</md-icon>
+				<input ng-model="ctrl.user.password" type="password">
+			</md-input-container>
+			
+		</md-card-content>
+		<md-card-actions layout="column">
+			<div layout="row" layout-align="end center">
+				<md-button class="md-warn">Esqueci minha senha</md-button>
+				<md-button class="md-primary">Entrar</md-button>
+			</div>
+			<div layout-align="end center">
+				<md-button class="md-primary" ng-click="ctrl.gotoSection('novousuario')" >Ainda não sou cadastrado</md-button>
+			</div>
+		</md-card-actions>
+	</md-card>
+</div>
