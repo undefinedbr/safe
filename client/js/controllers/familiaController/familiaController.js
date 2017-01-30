@@ -9,11 +9,17 @@
 		function FamiliaController($location, $mdDialog,dialogService,showToast, $scope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
+<<<<<<< HEAD
 			self.dialogService 		= dialogService;
 			self.$scope				= $scope;
 			self.showToast			= showToast;
 
 			self.familia 			= self.getFamilia();
+=======
+			self.familia 			= self.getFamilia();
+			self.dialogService 		= dialogService;
+			self.$scope				= $scope;
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		}
 
 		/**
@@ -28,66 +34,114 @@
 					nome:'Teste esposa',
 					posicaoFamilia:'esposa',
 					cpf:'08695315908',
+<<<<<<< HEAD
 					idade:35,
 					tiposanguineo:'O+',
 					altura:1.68,
 					sexo: 1,
 					peso:55
+=======
+					idade:'35',
+					tiposanguineo:'O+',
+					altura:'1,68',
+					sexo:'F',
+					peso:'55'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				},
 				{
 					foto:imagePath,
 					nome:'Teste filho',
 					posicaoFamilia:'filho',
 					cpf:'08695315908',
+<<<<<<< HEAD
 					idade:12,
 					tiposanguineo:'O+',
 					altura:1.40,
 					sexo: 0,
 					peso:47
+=======
+					idade:'12',
+					tiposanguineo:'O+',
+					altura:'1,40',
+					sexo:'M',
+					peso:'47'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				},
 				{
 					foto:imagePath,
 					nome:'Teste mae',
 					posicaoFamilia:'mãe',
 					cpf:'08695315908',
+<<<<<<< HEAD
 					idade:60,
 					tiposanguineo:'A+',
 					altura:1.68,
 					sexo: 0,
 					peso:75
+=======
+					idade:'60',
+					tiposanguineo:'A+',
+					altura:'1,68',
+					sexo:'M',
+					peso:'75'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				},
 				{
 					foto:imagePath,
 					nome:'Teste mae',
 					posicaoFamilia:'mãe',
 					cpf:'08695315908',
+<<<<<<< HEAD
 					idade:60,
 					tiposanguineo:'A+',
 					altura:1.68,
 					sexo: 0,
 					peso:75
+=======
+					idade:'60',
+					tiposanguineo:'A+',
+					altura:'1,68',
+					sexo:'M',
+					peso:'75'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				},
 				{
 					foto:imagePath,
 					nome:'Teste mae',
 					posicaoFamilia:'mãe',
 					cpf:'08695315908',
+<<<<<<< HEAD
 					idade:60,
 					tiposanguineo:'A+',
 					altura:1.68,
 					sexo: 0,
 					peso:75
+=======
+					idade:'60',
+					tiposanguineo:'A+',
+					altura:'1,68',
+					sexo:'M',
+					peso:'75'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				},
 				{
 					foto:imagePath,
 					nome:'Teste mae',
 					posicaoFamilia:'mãe',
 					cpf:'08695315908',
+<<<<<<< HEAD
 					idade:60,
 					tiposanguineo:'A+',
 					altura:1.68,
 					sexo: 0,
 					peso:75
+=======
+					idade:'60',
+					tiposanguineo:'A+',
+					altura:'1,68',
+					sexo:'M',
+					peso:'75'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				}
 			]
 		};

@@ -7,6 +7,7 @@
 	'use strict';
 
 	var HttpService = (function () {
+<<<<<<< HEAD
 		function HttpService($http,$cookies) {
 			var self = this;
 			self.$http = $http;
@@ -24,10 +25,22 @@
 				headers: {
                     "X-Auth-Token": self.$cookies.get('X-Auth-Token')
                 }
+=======
+		function HttpService($http, $httpParamSerializer) {
+			this.$http = $http;
+			this.$httpParamSerializer = $httpParamSerializer;
+		};
+
+		HttpService.prototype.get = function (url) {
+			return this.$http({
+				method: 'GET',
+				url: url
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			});
 		};
 
 		HttpService.prototype.post = function (obj, url) {
+<<<<<<< HEAD
 			var self = this;
 			return self.$http({
 				method: 'POST',
@@ -48,13 +61,25 @@
 				contentType: "application/json",
 				headers: {
 					"X-Auth-Token": self.$cookies.get('X-Auth-Token')
+=======
+			return this.$http({
+				method: 'POST',
+				url: url,
+				data: this.$httpParamSerializer(obj),
+				headers: {
+					'Content-Type': 'application/x-www-form-urlencoded'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 				}
 			});
 		};
 
 		HttpService.$inject = [
 			'$http',
+<<<<<<< HEAD
 			'$cookies'
+=======
+			'$httpParamSerializer'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		];
 
 		return HttpService;
@@ -136,12 +161,23 @@
 	}());
 
 	var DialogService = (function () {
+<<<<<<< HEAD
 		function DialogService($mdDialog) {
 			this.$mdDialog = $mdDialog;
 		};
 
 		DialogService.prototype.openDialog = function (templateUrl, controller, callBack, ev, parameter, scope) {
 			var self = this;
+=======
+		function DialogService($mdDialog,$mdMedia) {
+			this.$mdDialog = $mdDialog;
+			this.$mdMedia = $mdMedia;
+		};
+
+		DialogService.prototype.openDialog = function (templateUrl, controller, callBack, ev, parameter, scope) {
+			var useFullScreen = (this.$mdMedia('sm') || this.$mdMedia('xs')) && this.customFullscreen,
+				self = this;
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			self.$mdDialog.show({
 				templateUrl: templateUrl,
 				controller:  controller,
@@ -150,16 +186,32 @@
 				targetEvent: ev,
 				locals:  parameter,
 				clickOutsideToClose: true,
+<<<<<<< HEAD
 				fullscreen: true
 			}).then(function(response) {
 				callBack(response);
 			}, function() {
 				console.log('cancelado');
+=======
+				fullscreen: useFullScreen
+			}).then(function (response) {
+				callBack(response);
+			});
+			scope.$watch(function () {
+				return self.$mdMedia('xs') || self.$mdMedia('sm');
+			}, function (wantsFullScreen) {
+				self.customFullscreen = (wantsFullScreen === true);
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 			});
 		};
 
 		DialogService.$inject = [
+<<<<<<< HEAD
 			'$mdDialog'
+=======
+			'$mdDialog',
+			'$mdMedia'
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		];
 
 		return DialogService;

@@ -5,5 +5,9 @@
  */
 (function(angular) {
 	'use strict';
+<<<<<<< HEAD
 	angular.module('app.services', ['ngMaterial', 'ngCookies']);
+=======
+	angular.module('app.services', ['ngMaterial']);
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 })(window.angular);

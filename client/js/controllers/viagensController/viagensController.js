@@ -1,11 +1,16 @@
 /**
  * @autor -  Lucas Henrique de Abreu - <lucasigual14@gmail.com>
+<<<<<<< HEAD
  * Controller: ViagensController, responsável por funções de cadastro e listagem das pessoas vinculadas ao usuário.
+=======
+ * Controller: ViagensController, responsável por funções de cadastro e listagem das viagens.
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
  * data: 18/01/2017
  */
 (function (angular) {
 	'use strict';
 	var ViagensController = (function () {
+<<<<<<< HEAD
 		function ViagensController($location, $mdDialog,dialogService,showToast, $scope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
@@ -88,6 +93,16 @@
 			'$scope'
 		];
 
+=======
+		function ViagensController($mdSidenav, $location) {
+			var self 				= this;
+		}
+
+		ViagensController.$inject = [
+			'$mdSidenav',
+			'$location',
+		];
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		return ViagensController;
 	}());
 

@@ -1,11 +1,16 @@
 /**
  * @autor -  Lucas Henrique de Abreu - <lucasigual14@gmail.com>
+<<<<<<< HEAD
  * Controller: AutomoveisController, responsável por funções de cadastro e listagem das pessoas vinculadas ao usuário.
+=======
+ * Controller: AutomoveisController, responsável por funções de cadastro e listagem dos automóveis.
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
  * data: 18/01/2017
  */
 (function (angular) {
 	'use strict';
 	var AutomoveisController = (function () {
+<<<<<<< HEAD
 		function AutomoveisController($location, $mdDialog,dialogService,showToast, $scope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
@@ -76,6 +81,16 @@
 			'$scope'
 		];
 
+=======
+		function AutomoveisController($mdSidenav, $location) {
+			var self 				= this;
+		}
+
+		AutomoveisController.$inject = [
+			'$mdSidenav',
+			'$location',
+		];
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		return AutomoveisController;
 	}());
 

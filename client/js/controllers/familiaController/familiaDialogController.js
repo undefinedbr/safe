@@ -9,10 +9,14 @@
 		function FamiliaDialogController($mdDialog, locals) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
+<<<<<<< HEAD
 			self.pessoa				= locals ? locals : {};
 
 			//temporario
 			self.pessoa.foto = 'img/60.png'
+=======
+			self.pessoa				= locals ? locals.pessoa : {};
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		}
 
 		FamiliaDialogController.prototype.hide = function() {

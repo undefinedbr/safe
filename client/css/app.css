@@ -305,4 +305,12 @@ md-dialog .md-dialog-content {
 }
 .back-fff {
 	background-color: #fff;
+<<<<<<< HEAD
+=======
+}
+.btn-bottom {
+	position: fixed;
+	right: 5px;
+	bottom: 5px;
+>>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 }
