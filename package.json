@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 {
   "name": "safe",
   "version": "0.0.0",
@@ -62,16 +61,3 @@
   },
   "private": true
 }
-=======
-{
-	"name": "app",
-	"version": "0.1.0",
-	"description": "Servidor",
-	"dependencies": {
-		"express": "latest",
-		"mongoose": "latest",
-    	"body-parser": "~1.9.2"
-	},
-	"author": "Joisson Mello"
-}
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca

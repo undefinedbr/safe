@@ -1,14 +1,5 @@
-<<<<<<< HEAD
 node_modules
 .idea
 /server/config/local.env.js
 npm-debug.log
 /client/bower_components
-=======
-node_modules
-.tmp
-.idea
-bower_components
-dist
-npm-debug.log
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
