@@ -12,7 +12,8 @@ var PessoaSchema = new Schema({
 	idade: Number,
 	posicaoVeiculo: String,
 	posicaoFamiliar: String,
-	password: String
+	password: String,
+	foto:String
 });
 
 module.exports = mongoose.model('Pessoa', PessoaSchema);
