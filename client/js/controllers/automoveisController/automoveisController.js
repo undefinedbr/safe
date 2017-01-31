@@ -6,7 +6,6 @@
 (function (angular) {
 	'use strict';
 	var AutomoveisController = (function () {
-<<<<<<< HEAD
 		function AutomoveisController($location, $mdDialog,dialogService,showToast, $scope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
@@ -77,16 +76,6 @@
 			'$scope'
 		];
 
-=======
-		function AutomoveisController($mdSidenav, $location) {
-			var self 				= this;
-		}
-
-		AutomoveisController.$inject = [
-			'$mdSidenav',
-			'$location',
-		];
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		return AutomoveisController;
 	}());
 

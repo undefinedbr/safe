@@ -14,7 +14,6 @@
     "angular-i18n": "latest",
     "angular-route": "latest",
     "angular-cookies": "latest",
-    "material-steppers": "~1.0.2",
     "angular-input-masks": "~2.4.0",
     "angular-material": "^1.0.9",
     "angular-aria": "^1.5.8",

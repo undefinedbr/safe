@@ -248,7 +248,7 @@ md-dialog .md-dialog-content {
 	background-color:#E91E63;
 }
 .colorBrown {
-    background-color: #795548;
+	background-color: #795548;
 }
 
 .percentBar {
@@ -269,11 +269,11 @@ md-dialog .md-dialog-content {
 }
 
 .itemLegend {
-    height: 15px;
-    width: 15px;
-    margin-right: 5px;
-    border-radius: 2px;
-    box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
+	height: 15px;
+	width: 15px;
+	margin-right: 5px;
+	border-radius: 2px;
+	box-shadow: 0 1px 3px 0 rgba(0,0,0,.2), 0 1px 1px 0 rgba(0,0,0,.14), 0 2px 1px -1px rgba(0,0,0,.12);
 }
 .my-tooltip-parent {
   position: relative;
@@ -292,25 +292,27 @@ md-dialog .md-dialog-content {
 }
 
 .md-avatar {
-    margin-top: -15px;
-    margin-bottom: 5px;
-    margin-right: -5px;
-    border-radius: 50%;
-    box-sizing: content-box;
-    -webkit-box-flex: 0;
-    -webkit-flex: none;
-    flex: none;
-    width: 70px;
-    height: 70px;
+	margin-top: -15px;
+	margin-bottom: 5px;
+	margin-right: -5px;
+	border-radius: 50%;
+	box-sizing: content-box;
+	-webkit-box-flex: 0;
+	-webkit-flex: none;
+	flex: none;
+	width: 70px;
+	height: 70px;
 }
 .back-fff {
 	background-color: #fff;
-<<<<<<< HEAD
-=======
 }
-.btn-bottom {
-	position: fixed;
-	right: 5px;
-	bottom: 5px;
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
+
+.angular-google-map-container {
+	height: 400px;
+	margin-bottom: 15px;
+}
+
+md-input-container {
+    padding-bottom: 0px !important;
+    margin-bottom: 0px !important;
 }

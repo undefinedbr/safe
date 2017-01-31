@@ -5,5 +5,5 @@
  */
 (function(angular) {
 	'use strict';
-	angular.module('app.controllers', ['ngMaterial']);
+	angular.module('app.controllers', ['ngMaterial', 'google-maps']);
 })(window.angular);

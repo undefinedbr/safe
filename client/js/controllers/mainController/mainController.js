@@ -6,13 +6,11 @@
 (function (angular) {
 	'use strict';
 	var MainController = (function () {
-		function MainController($mdSidenav, $location, $scope) {
+		function MainController($mdSidenav, $location, $scope, $rootScope) {
 			var self 				= this;
 			self.$mdSidenav 		= $mdSidenav;
 			self.$location  		= $location;
-			$scope.$on('userLogged', function(ev, user) {
-				self.userLogged	= user;
-			});
+			self.userLogged			= $rootScope.userLogged;
 			
 			self.mainMenuItems = [
 				{
@@ -46,7 +44,8 @@
 		MainController.$inject = [
 			'$mdSidenav',
 			'$location',
-			'$scope'
+			'$scope',
+			'$rootScope'
 		];
 		return MainController;
 	}());

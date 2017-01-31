@@ -6,12 +6,15 @@
 (function (angular) {
 	'use strict';
 	var FamiliaDialogController = (function () {
-		function FamiliaDialogController($mdDialog, locals) {
+		function FamiliaDialogController($mdDialog, locals, httpService, showToast) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
-			self.pessoa				= locals ? locals : {};
+			self.pessoa				= locals.pessoa ? locals.pessoa : {};
+			self.httpService		= httpService;
+			self.showToast 			= showToast;
 			//temporario
 			self.pessoa.foto = 'img/60.png'
+			self.pessoa.pessoa = locals.userLogged;
 		}
 
 		FamiliaDialogController.prototype.hide = function() {
@@ -23,12 +26,19 @@
 		};
 
 		FamiliaDialogController.prototype.save = function(pessoa) {
-			this.$mdDialog.hide(pessoa);
+			var self = this;
+			self.httpService.post(pessoa, 'familia').then(function(res) {
+				self.showToast.showSimpleToast(res.data.nome+ ', cadatrado com sucesso.');
+				this.$mdDialog.hide(res.data.nome);
+			});
 		};
+		
 
 		FamiliaDialogController.$inject = [
 			'$mdDialog',
-			'locals'
+			'locals',
+			'httpService',
+			'showToast'
 		];
 		
 		return FamiliaDialogController;

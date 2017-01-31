@@ -6,90 +6,27 @@
 (function (angular) {
 	'use strict';
 	var FamiliaController = (function () {
-		function FamiliaController($location, $mdDialog,dialogService,showToast, $scope) {
+		function FamiliaController($location, $mdDialog,dialogService,showToast, $scope, httpService, $rootScope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
 			self.dialogService 		= dialogService;
 			self.$scope				= $scope;
 			self.showToast			= showToast;
+			self.httpService 		= httpService;
+			self.userLogged	= $rootScope.userLogged;
 
-			self.familia 			= self.getFamilia();
+			self.getFamilia(self.userLogged);
 		}
 
 		/**
 		 * Busca na base de dados os integrantes cadastrados como família,
 		 * para o usuário logado.
 		 **/
-		FamiliaController.prototype.getFamilia = function(){
-			var imagePath = 'img/60.png';
-			return [
-				{
-					foto:imagePath,
-					nome:'Teste esposa',
-					posicaoFamilia:'esposa',
-					cpf:'08695315908',
-					idade:35,
-					tiposanguineo:'O+',
-					altura:1.68,
-					sexo: 1,
-					peso:55
-				},
-				{
-					foto:imagePath,
-					nome:'Teste filho',
-					posicaoFamilia:'filho',
-					cpf:'08695315908',
-					idade:12,
-					tiposanguineo:'O+',
-					altura:1.40,
-					sexo: 0,
-					peso:47
-				},
-				{
-					foto:imagePath,
-					nome:'Teste mae',
-					posicaoFamilia:'mãe',
-					cpf:'08695315908',
-					idade:60,
-					tiposanguineo:'A+',
-					altura:1.68,
-					sexo: 0,
-					peso:75
-				},
-				{
-					foto:imagePath,
-					nome:'Teste mae',
-					posicaoFamilia:'mãe',
-					cpf:'08695315908',
-					idade:60,
-					tiposanguineo:'A+',
-					altura:1.68,
-					sexo: 0,
-					peso:75
-				},
-				{
-					foto:imagePath,
-					nome:'Teste mae',
-					posicaoFamilia:'mãe',
-					cpf:'08695315908',
-					idade:60,
-					tiposanguineo:'A+',
-					altura:1.68,
-					sexo: 0,
-					peso:75
-				},
-				{
-					foto:imagePath,
-					nome:'Teste mae',
-					posicaoFamilia:'mãe',
-					cpf:'08695315908',
-					idade:60,
-					tiposanguineo:'A+',
-					altura:1.68,
-					sexo: 0,
-					peso:75
-				}
-			]
+		FamiliaController.prototype.getFamilia = function(pessoa){
+			var self = this;
+			self.httpService.get('familia', pessoa).then(function(res) {
+				self.familia = res.data;
+			});
 		};
 
 		FamiliaController.prototype.showDialog = function(ev, pessoa) {
@@ -99,7 +36,7 @@
 				(function(pessoa){
 					self.familia.push(pessoa);
 					self.showToast.showSimpleToast('Alterações cadastrados com sucesso.', '');
-				}), ev, pessoa, 
+				}), ev, {pessoa: pessoa, userLogged: self.userLogged}, 
 				self.$scope
 			)
 		};
@@ -109,7 +46,9 @@
 			'$mdDialog',
 			'dialogService',
 			'showToast',
-			'$scope'
+			'$scope',
+			'httpService',
+			'$rootScope'
 		];
 
 		return FamiliaController;

@@ -12,24 +12,28 @@
 
 		<md-dialog-content>
 			<md-content layout="column" layout-padding>
-				<div layout="row">
+			<div layout="row" layout-align="start center">
+				<div flex="75" layout="column">
 					<md-input-container>
-							<label>Direção</label>
-							<input ng-model="ctrl.addressInput" ng-model-options="{debounce: 1000}" ng-change="ctrl.buscaDirecao()" />
+						<label>Origem</label>
+						<input type="text" ng-model="ctrl.directions.origin" />
 					</md-input-container>
-					<md-input-container flex="99">
-							<label>Locais disponíveis</label>
-							<md-select ng-model="ctrl.selectedPlace" ng-disabled="ctrl.places.length < 2" ng-change="ctrl.centralizarLocal()">
-									<md-option ng-repeat="place in ctrl.places" value="{{place.place_id}}">{{place.formatted_address}}</md-option>
-							</md-select>
-					</md-input-container>
-					<md-button class="md-icon-button" ng-click="ctrl.apagarMarcadores()" ng-disabled="ctrl.markers.length === 0">
-							<md-icon aria-label="apagar">delete</md-icon>
-							<md-tooltip md-delay="1500" md-autohide="true">Apagar</md-tooltip>
-					</md-button>
+					<md-input-container>
+						<label>Destino</label>
+						<input type="text" ng-model="ctrl.directions.destination" />
+					</md-input-container>	
 				</div>
-				<div id="map" style="height: 55vh;margin: 0px 10px 0px 10px;"></div>
-			</md-content>
+				<div flex="25" layout-align="end center">
+					<md-button md-no-ink class="md-primary" ng-click="ctrl.getDirections()">
+						Gerar
+					</md-button>	
+				</div>
+			</div>
+			<google-map control="ctrl.map.control" center="ctrl.map.center" zoom="ctrl.map.zoom">
+				<marker coords="ctrl.marker.center"></marker>
+			</google-map>
+			
+			<div id="directionsList" ng-show="ctrl.directions.showList"></div>
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row">
@@ -43,3 +47,4 @@
 		</md-dialog-actions>
 	</form>
 </md-dialog>
+<style type="text/css"></style>

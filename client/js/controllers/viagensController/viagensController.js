@@ -6,12 +6,13 @@
 (function (angular) {
 	'use strict';
 	var ViagensController = (function () {
-		function ViagensController($location, $mdDialog,dialogService,showToast, $scope) {
+		function ViagensController($location, $mdDialog,dialogService,showToast, $scope, $rootScope) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
 			self.dialogService 		= dialogService;
 			self.$scope				= $scope;
 			self.showToast			= showToast;
+			self.userLogged	= $rootScope.userLogged;
 
 			self.viagens 			= self.getViagens();
 		}
@@ -75,7 +76,7 @@
 				(function(viagem){
 					self.viagens.push(viagem);
 					self.showToast.showSimpleToast('Alterações cadastrados com sucesso.', '');
-				}), ev, viagem, 
+				}), ev, {viagem: viagem, userLogged: self.userLogged}, 
 				self.$scope
 			)
 		};
@@ -85,7 +86,8 @@
 			'$mdDialog',
 			'dialogService',
 			'showToast',
-			'$scope'
+			'$scope',
+			'$rootScope'
 		];
 		return ViagensController;
 	}());

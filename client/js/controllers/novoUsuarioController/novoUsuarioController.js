@@ -6,12 +6,13 @@
 (function (angular) {
 	'use strict';
 	var NovoUsuarioController = (function () {
-		function NovoUsuarioController($location, httpService, showToast, $scope) {
+		function NovoUsuarioController($location, httpService, showToast, $scope, $rootScope) {
 			var self 				= this;
 			self.$location			= $location;
 			self.httpService 		= httpService;
 			self.showToast 			= showToast;
-			self.$scope			= $scope;
+			self.$scope				= $scope;
+			self.$rootScope			= $rootScope;
 			self.pessoa = {
 				foto:'img/60.png'
 			}
@@ -21,7 +22,7 @@
 			var self = this;
 			self.httpService.post(pessoa, 'pessoas').then(function(res) {
 				self.showToast.showSimpleToast(res.data.nome+ ', cadatrado com sucesso.');
-				self.$scope.$emit('userLogged',res.data);
+				self.$rootScope.userLogged	= res.data;
 				self.$location.url('home');
 			});
 		};
@@ -31,7 +32,8 @@
 			'$location',
 			'httpService',
 			'showToast',
-			'$scope'
+			'$scope',
+			'$rootScope'
 		];
 		return NovoUsuarioController;
 	}());

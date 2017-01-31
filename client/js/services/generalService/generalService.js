@@ -16,11 +16,12 @@
 			//self.contextPath = "http://localhost:8080/api/";
 		};
 
-		HttpService.prototype.get = function (url) {
+		HttpService.prototype.get = function (url,obj) {
 			var self = this;
 			return self.$http({
 				method: 'GET',
 				url: self.contextPath + url,
+				data: JSON.stringify(obj),
 				headers: {
 					"X-Auth-Token": self.$cookies.get('X-Auth-Token')
 				}
