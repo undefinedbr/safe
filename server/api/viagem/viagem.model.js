@@ -4,9 +4,11 @@ var mongoose = require('mongoose'),
     Schema = mongoose.Schema;
 
 var ViagemSchema = new Schema({
-  name: String,
-  info: String,
-  active: Boolean
+	distancia: String,
+	duracao: String,
+	origem: String,
+	destino: String,
+	pessoa:String
 });
 
 module.exports = mongoose.model('Viagem', ViagemSchema);

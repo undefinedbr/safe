@@ -4,14 +4,14 @@
 		<section class="back-fff">
 			<md-subheader class="md-primary">Viagens</md-subheader>
 			<md-list layout-padding>
-				<md-list-item class="md-3-line" ng-repeat="item in ctrl.viagens" ng-click="ctrl.showDialog($event, item)">
+				<md-list-item class="md-3-line" ng-repeat="item in ctrl.viagens"
+				 ng-click="ctrl.showDialog($event, item)">
 					<div class="md-list-item-text">
 						<h3>{{item.origem}} / {{item.destino}}</h3>
-						<h4>{{item.kilometragem}} KM</h4>
+						<h4>{{item.distancia}}</h4>
 						<p>
 							Status: {{item.status}}
-							Saída: {{item.horasaida | date}}
-							Chegada: {{item.previsaochegada | date}}
+							Tempo estimado: {{item.duracao}}
 						</p>
 					</div>
 				</md-list-item>

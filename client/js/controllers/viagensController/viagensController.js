@@ -6,66 +6,31 @@
 (function (angular) {
 	'use strict';
 	var ViagensController = (function () {
-		function ViagensController($location, $mdDialog,dialogService,showToast, $scope) {
+		function ViagensController($location, $mdDialog,dialogService,showToast, $scope, $rootScope, httpService) {
 			var self 				= this;
 			self.$mdDialog 			= $mdDialog;
 			self.dialogService 		= dialogService;
 			self.$scope				= $scope;
 			self.showToast			= showToast;
-
-			self.viagens 			= self.getViagens();
+			self.userLogged			= $rootScope.userLogged;
+			self.httpService		= httpService;
+			if (self.userLogged) {
+				self.getViagens(self.userLogged);
+			} else {
+				self.showToast.showSimpleToast('Você deve estar logado para vizualizar esta tela.', '');
+				$location.url('login')
+			}
 		}
 
 		/**
-		 * Busca na base de dados os integrantes cadastrados como família,
+		 * Busca na base de dados viagens ,
 		 * para o usuário logado.
 		 **/
-		ViagensController.prototype.getViagens = function(){
-			return [
-				{
-					origem: 'Pato Branco',
-					destino: 'Chopinzinho',
-					horasaida: new Date(),
-					previsaochegada: new Date(),
-					kilometragem:50,
-					status:'realizada'
-				},{
-					origem: 'Pato Branco',
-					destino: 'Chopinzinho',
-					horasaida: new Date(),
-					previsaochegada: new Date(),
-					kilometragem:50,
-					status:'realizada'
-				},{
-					origem: 'Pato Branco',
-					destino: 'Chopinzinho',
-					horasaida: new Date(),
-					previsaochegada: new Date(),
-					kilometragem:50,
-					status:'realizada'
-				},{
-					origem: 'Pato Branco',
-					destino: 'Chopinzinho',
-					horasaida: new Date(),
-					previsaochegada: new Date(),
-					kilometragem:50,
-					status:'realizada'
-				},{
-					origem: 'Pato Branco',
-					destino: 'Chopinzinho',
-					horasaida: new Date(),
-					previsaochegada: new Date(),
-					kilometragem:50,
-					status:'realizada'
-				},{
-					origem: 'Pato Branco',
-					destino: 'Chopinzinho',
-					horasaida: new Date(),
-					previsaochegada: new Date(),
-					kilometragem:50,
-					status:'a fazer'
-				},
-			]
+		ViagensController.prototype.getViagens = function(pessoa){
+			var self = this;
+			self.httpService.get('viagens?id='+pessoa._id).then(function(res) {
+				self.viagens = res.data;
+			});
 		};
 
 		ViagensController.prototype.showDialog = function(ev, viagem) {
@@ -75,7 +40,7 @@
 				(function(viagem){
 					self.viagens.push(viagem);
 					self.showToast.showSimpleToast('Alterações cadastrados com sucesso.', '');
-				}), ev, viagem, 
+				}), ev, {viagem: viagem, userLogged: self.userLogged}, 
 				self.$scope
 			)
 		};
@@ -85,7 +50,9 @@
 			'$mdDialog',
 			'dialogService',
 			'showToast',
-			'$scope'
+			'$scope',
+			'$rootScope',
+			'httpService'
 		];
 		return ViagensController;
 	}());

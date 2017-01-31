@@ -6,23 +6,41 @@
 (function (angular) {
 	'use strict';
 	var ViagensDialogController = (function () {
-		function ViagensDialogController($mdDialog, locals) {
+		function ViagensDialogController($mdDialog, locals,showToast, httpService) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
-			self.viagem				= locals ? locals : {};
-			        var mapa;
-	        self.geocoder;
-
-	        self.view = {
-	            addressInput: '',
-	            places: [],
-	            selectedPlace: '',
-	            markers: [],
-	        };
-	        setTimeout(function() {
-	        	self.initializeComponents();
-	        }, 500);
-
+			self.viagem				= locals.viagem ? locals.viagem : {};
+			self.showToast			= showToast;
+			self.httpService		= httpService;
+			self.userLogged 		= locals.userLogged;
+			// map object
+			self.map = {
+				control: {},
+				center: {
+					latitude: -37.812150,
+					longitude: 144.971008
+				},
+				zoom: 14
+			};
+			
+			// marker object
+			self.marker = {
+				center: {
+					latitude: -37.812150,
+					longitude: 144.971008
+				}
+			}
+			// instantiate google map objects for directions
+			self.directionsDisplay = new google.maps.DirectionsRenderer();
+			self.directionsService = new google.maps.DirectionsService();
+			self.geocoder = new google.maps.Geocoder();
+				
+			// directions object -- with defaults
+			self.directions = {
+				origin: "Pato Branco, Parana",
+				destination: "Chopinzinho, Parana",
+				showList: true
+			}
 		}
 
 		ViagensDialogController.prototype.hide = function() {
@@ -34,90 +52,47 @@
 		};
 
 		ViagensDialogController.prototype.save = function(viagem) {
-			this.$mdDialog.hide(viagem);
+			var self = this;
+			viagem = {
+				distancia : self.directionsDisplay.directions.routes[0].legs[0].distance.text,
+				duracao : self.directionsDisplay.directions.routes[0].legs[0].duration.text,
+				origem : self.directionsDisplay.directions.routes[0].legs[0].start_address,
+				destino : self.directionsDisplay.directions.routes[0].legs[0].end_address,
+				pessoa: self.userLogged._id
+			}
+
+			self.httpService.post(viagem, 'viagens').then(function(res) {
+				self.showToast.showSimpleToast('cadatrado realizado com sucesso.');
+				self.$mdDialog.hide(res.data);
+			});
 		};
-
-		//Inicializa o mapa e outros components
-        ViagensDialogController.prototype.initializeComponents = function() {
-        	var self = this,
-            mapConfig = {
-                center: { lat: 13.676445, lng: -89.281736 },
-                zoom: 17,
-                mapTypeId: google.maps.MapTypeId.ROADMAP
-            },
-            mapa = new google.maps.Map(document.getElementById('map'), mapConfig);
-            self.geocoder = new google.maps.Geocoder();
-        }
-
-        //Busca diferentes ubicaciones segun la direccion dada
-        ViagensDialogController.prototype.buscaDirecao = function() {
-        	var self = this;
-            if (self.geocoder !== undefined) {
-                self.geocoder.geocode(
-                    { address: self.view.addressInput },
-                    function (results, status) {
-                        self.view.places = [];
-                        self.view.selectedPlace = '';
-                        switch (status) {
-                            case google.maps.GeocoderStatus.OK:
-                                console.log(results);
-                                self.view.places = results;
-                                if (results.length < 2) {
-                                    self.view.selectedPlace = results[0].place_id;
-                                    self.view.addressInput = results[0].formatted_address;
-                                    self.centralizarLocal();
-                                } else self.showMsg('Encontrado ' + self.view.places.length + ' locais');
-                                break;
-                            case google.maps.GeocoderStatus.ZERO_RESULTS:
-                                self.showMsg('Não foram encontrados resultados');
-                                break;
-                            case google.maps.GeocoderStatus.REQUEST_DENIED:
-                                self.showMsg('A solicitação de pesquisa foi negada');
-                                break;
-                            case google.maps.GeocoderStatus.INVALID_REQUEST:
-                                self.showMsg('solicitação invalida');
-                                break;
-                        }
-                        self.$apply();
-                    }
-                );
-            }
-        }
-
-        //Posiciona en el centro de la vista del mapa la ubicacion seleccionada
-        ViagensDialogController.prototype.centralizarLocal = function() {
-        	var self = this;
-            if (self.view.selectedPlace !== undefined & self.view.selectedPlace !== '') {
-                var location = _.result(_.find(self.view.places, function (x) { return x.place_id === self.view.selectedPlace; }), 'geometry.location');
-                if (location !== undefined) {
-                    var marker = new google.maps.Marker({ position: location, map: mapa });
-                    self.view.markers.push(marker);
-                    mapa.setCenter(location);
-                }
-                else {
-                    self.showMsg('No se pudo mostrar la ubicación');
-                }
-            }
-        }
-
-        //Apaga os marcadores
-        ViagensDialogController.prototype.apagarMarcadores = function() {
-        	var self = this;
-            for (var i = 0; i < self.view.markers.length; i++) {
-                self.view.markers[i].setMap(null);
-            }
-            self.view.markers = [];
-        }
-
-        //Mostra a mensagem
-        ViagensDialogController.prototype.showMsg = function(mensagem) {
-        	var self = this;
-        	self.showToast.showSimpleToast(mensagem, '');
-        }
+		
+		
+		// get directions using google maps api
+		ViagensDialogController.prototype.getDirections = function () {
+			var self = this;
+			var request = {
+				origin: self.directions.origin,
+				destination: self.directions.destination,
+				travelMode: google.maps.DirectionsTravelMode.DRIVING
+			};
+			self.directionsService.route(request, function (response, status) {
+				if (status === google.maps.DirectionsStatus.OK) {
+					self.directionsDisplay.setDirections(response);
+					self.directionsDisplay.setMap(self.map.control.getGMap());
+					self.directionsDisplay.setPanel(document.getElementById('directionsList'));
+					self.directions.showList = true;
+				} else {
+					self.showToast.showSimpleToast('Não foi possível carregar o mapa!');
+				}
+			});
+		}
 
 		ViagensDialogController.$inject = [
 			'$mdDialog',
-			'locals'
+			'locals',
+			'showToast',
+			'httpService'
 		];
 		
 		return ViagensDialogController;
