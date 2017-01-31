@@ -22,11 +22,11 @@ exports.show = function(req, res) {
 
 // Busca uma lista de família de uma pessoa.
 exports.getByPessoa = function(req, res) {
-  Familia.find({ pessoa: req.params.pessoa }, function (err, familia) {
-    if(err) { return handleError(res, err); }
-    if(!familia) { return res.status(404).send('Não foi encontrado'); }
-    return res.json(familia);
-  });
+	Familia.find({ pessoa: req.params.id }, function (err, familia) {
+		if(err) { return handleError(res, err); }
+		if(!familia) { return res.status(404).send('Não foi encontrado'); }
+		return res.json(familia);
+	});
 };
 
 

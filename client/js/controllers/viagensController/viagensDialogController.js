@@ -6,17 +6,19 @@
 (function (angular) {
 	'use strict';
 	var ViagensDialogController = (function () {
-		function ViagensDialogController($mdDialog, locals,showToast) {
+		function ViagensDialogController($mdDialog, locals,showToast, httpService) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
 			self.viagem				= locals.viagem ? locals.viagem : {};
 			self.showToast			= showToast;
+			self.httpService		= httpService;
+			self.userLogged 		= locals.userLogged;
 			// map object
 			self.map = {
 				control: {},
 				center: {
-						latitude: -37.812150,
-						longitude: 144.971008
+					latitude: -37.812150,
+					longitude: 144.971008
 				},
 				zoom: 14
 			};
@@ -24,8 +26,8 @@
 			// marker object
 			self.marker = {
 				center: {
-						latitude: -37.812150,
-						longitude: 144.971008
+					latitude: -37.812150,
+					longitude: 144.971008
 				}
 			}
 			// instantiate google map objects for directions
@@ -50,9 +52,20 @@
 		};
 
 		ViagensDialogController.prototype.save = function(viagem) {
-			this.$mdDialog.hide(viagem);
-		};
+			var self = this;
+			viagem = {
+				distancia : self.directionsDisplay.directions.routes[0].legs[0].distance.text,
+				duracao : self.directionsDisplay.directions.routes[0].legs[0].duration.text,
+				origem : self.directionsDisplay.directions.routes[0].legs[0].start_address,
+				destino : self.directionsDisplay.directions.routes[0].legs[0].end_address,
+				pessoa: self.userLogged._id
+			}
 
+			self.httpService.post(viagem, 'viagens').then(function(res) {
+				self.showToast.showSimpleToast('cadatrado realizado com sucesso.');
+				self.$mdDialog.hide(res.data);
+			});
+		};
 		
 		
 		// get directions using google maps api
@@ -69,7 +82,6 @@
 					self.directionsDisplay.setMap(self.map.control.getGMap());
 					self.directionsDisplay.setPanel(document.getElementById('directionsList'));
 					self.directions.showList = true;
-					console.log(self.directionsDisplay);
 				} else {
 					self.showToast.showSimpleToast('Não foi possível carregar o mapa!');
 				}
@@ -79,7 +91,8 @@
 		ViagensDialogController.$inject = [
 			'$mdDialog',
 			'locals',
-			'showToast'
+			'showToast',
+			'httpService'
 		];
 		
 		return ViagensDialogController;

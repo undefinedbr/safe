@@ -14,7 +14,7 @@
 			self.showToast 			= showToast;
 			//temporario
 			self.pessoa.foto = 'img/60.png'
-			self.pessoa.pessoa = locals.userLogged;
+			self.pessoa.pessoa = locals.userLogged._id;
 		}
 
 		FamiliaDialogController.prototype.hide = function() {
@@ -29,7 +29,7 @@
 			var self = this;
 			self.httpService.post(pessoa, 'familia').then(function(res) {
 				self.showToast.showSimpleToast(res.data.nome+ ', cadatrado com sucesso.');
-				this.$mdDialog.hide(res.data.nome);
+				self.$mdDialog.hide(res.data);
 			});
 		};
 		

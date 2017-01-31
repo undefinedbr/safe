@@ -15,7 +15,12 @@
 			self.httpService 		= httpService;
 			self.userLogged	= $rootScope.userLogged;
 
-			self.getFamilia(self.userLogged);
+			if (self.userLogged) {
+				self.getFamilia(self.userLogged);
+			} else {
+				self.showToast.showSimpleToast('Você deve estar logado para vizualizar esta tela.', '');
+				$location.url('login')
+			}
 		}
 
 		/**
@@ -24,7 +29,7 @@
 		 **/
 		FamiliaController.prototype.getFamilia = function(pessoa){
 			var self = this;
-			self.httpService.get('familia', pessoa).then(function(res) {
+			self.httpService.get('familia?id='+pessoa._id).then(function(res) {
 				self.familia = res.data;
 			});
 		};
