@@ -19,5 +19,6 @@ module.exports = function(app) {
   app.use('/api/viagens', require('./api/viagem'));
   app.use('/api/familia', require('./api/familia'));
   app.use('/api/pessoas', require('./api/pessoa'));
+  app.use('/api/veiculos', require('./api/veiculos'));
 
 };
