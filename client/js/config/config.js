@@ -16,13 +16,8 @@
 			var m = moment(dateString, 'DD/MM/YYYY', true);
 			return m.isValid() ? m.toDate() : new Date(NaN);
 		};
-<<<<<<< HEAD
 		$mdThemingProvider.theme('default').primaryPalette('red');
 		//$mdThemingProvider.theme('default').primaryPalette('teal');
-=======
-		// $mdThemingProvider.theme('default').primaryPalette('red');
-		$mdThemingProvider.theme('default').primaryPalette('teal');
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		$mdAriaProvider.disableWarnings();
 	})
 	.config(['$routeProvider', function (routeProvider) {
@@ -42,7 +37,6 @@
 			templateUrl: 'partials/viagens.html',
 			controller: 'ViagensController',
 			controllerAs: 'ctrl'
-<<<<<<< HEAD
 		}).when('/login', {
 			templateUrl: 'partials/login.html',
 			controller: 'LoginController',
@@ -51,8 +45,6 @@
 			templateUrl: 'partials/novousuario.html',
 			controller: 'NovoUsuarioController',
 			controllerAs: 'ctrl'
-=======
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 		}).otherwise({
 			redirectTo: '/crud'
 		});

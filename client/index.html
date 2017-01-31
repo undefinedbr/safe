@@ -16,7 +16,6 @@
 </head>
 
 <body ng-controller="MainController as ctrl">
-<<<<<<< HEAD
 	<md-sidenav class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-component-id="left">
 			<md-toolbar class="md-tall md-hue-2" layout-align="end end">
 					<div ng-if="ctrl.userLogged" class="md-toolbar-tools" layout layout-padding>
@@ -73,73 +72,14 @@
 					</md-content>
 			</section>
 	</section>
-=======
-	<div ng-if="!ctrl.bloqUser">
-			<md-sidenav class="md-sidenav-left md-whiteframe-z2" role="sidenav" md-component-id="left">
-					<md-toolbar class="md-tall md-hue-2" layout-align="end end">
-							<div class="md-toolbar-tools" layout layout-padding>
-								<div>
-									<img ng-src="{{ctrl.user.foto}}" class="md-avatar" alt="{{ctrl.user.foto}}" />
-								</div>
-								<div style="cursor: pointer;" ng-click="ctrl.gotoSection('profile')" layout="column">
-										<span class="md-title">{{ctrl.user.nome}}</span>
-										<span class="md-subhead">{{ctrl.user.email}}</span>
-								</div>
-							</div>
-					</md-toolbar>
-					<md-content role="navigation">
-							<md-list-item ng-repeat="item in ctrl.mainMenuItems" ng-click="ctrl.gotoSection(item.location)">
-									<md-icon>{{item.icon}}</md-icon>
-									<p class="md-body-2">{{item.label}}</p>
-									<span flex></span>
-									<md-icon>chevron_right</md-icon>
-							</md-list-item>
-					</md-content>
-			</md-sidenav>
-			<section layout="column" role="main" flex>
-					<md-toolbar md-scroll-shrink role="toolbar">
-							<div class="md-toolbar-tools">
-									<md-button class="md-icon-button" ng-click="ctrl.toggleSidenav('left')" aria-label="Menu">
-											<md-icon>menu</md-icon>
-											<md-tooltip>
-													Abrir menu
-											</md-tooltip>
-									</md-button> 
-									<h4 hide-xs class="md-title">Safe</h4>
-									<span flex></span>
-									<md-button class="md-icon-button" ng-click="null" aria-label="pesquisa">
-											<md-icon>search</md-icon>
-											<md-tooltip>
-													Abrir pesquisa
-											</md-tooltip>
-									</md-button> 
-							</div>
-					</md-toolbar>
-					<section id="content" role="content" layout="column" md-scroll-y>
-							<!--<div class="top-bg md-accent-bg"></div>-->
-							<md-content class="mainContent" ng-cloak>
-									<ng-view></ng-view>
-							</md-content>
-					</section>
-			</section>
-	</div>
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 <script src="bower_components/angular/angular.min.js"></script>
 <script src="bower_components/angular-animate/angular-animate.min.js"></script>
 <script src="bower_components/angular-aria/angular-aria.min.js"></script>
 <script src="bower_components/angular-route/angular-route.min.js"></script>
-<<<<<<< HEAD
 <script src="bower_components/angular-cookies/angular-cookies.min.js"></script>
 <script src="bower_components/angular-messages/angular-messages.min.js"></script>
 <script src="bower_components/angular-material/angular-material.js"></script>
-
 <script src="https://maps.googleapis.com/maps/api/js"></script>
-
-=======
-<script src="bower_components/angular-messages/angular-messages.min.js"></script>
-<script src="bower_components/angular-material/angular-material.js"></script>
-
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 <script src="bower_components/angular-i18n/angular-locale_pt-br.js"></script>
 
 <script src="js/app.js"></script>
@@ -152,7 +92,6 @@
 <!-- Controllers -->
 <script src="js/controllers/mainController/mainController.js"></script>
 <script src="js/controllers/automoveisController/automoveisController.js"></script>
-<<<<<<< HEAD
 <script src="js/controllers/automoveisController/automoveisDialogController.js"></script>
 <script src="js/controllers/familiaController/familiaController.js"></script>
 <script src="js/controllers/familiaController/familiaDialogController.js"></script>
@@ -161,12 +100,6 @@
 <script src="js/controllers/homeController/homeController.js"></script>
 <script src="js/controllers/loginController/loginController.js"></script>
 <script src="js/controllers/novoUsuarioController/novoUsuarioController.js"></script>
-=======
-<script src="js/controllers/familiaController/familiaController.js"></script>
-<script src="js/controllers/familiaController/familiaDialogController.js"></script>
-<script src="js/controllers/viagensController/viagensController.js"></script>
-<script src="js/controllers/homeController/homeController.js"></script>
->>>>>>> aed7f327379594d899c66d5371181c0e4ca853ca
 <!-- Services -->
 <script src="js/services/generalService/generalService.js"></script>
 
