@@ -57,8 +57,13 @@
 							</md-button> 
 							<h4 hide-xs class="md-title">Safe</h4>
 							<span flex></span>
-							<md-button class="md-icon-button" ng-click="null" aria-label="pesquisa">
-									<md-icon>search</md-icon>
+							<md-input-container ng-if="search">
+								<label>Pesquisa</label>
+								<input ng-model="$rootScope.queryGeral">
+							</md-input-container>
+							<md-button class="md-icon-button" ng-click="search = !search" aria-label="pesquisa">
+									<md-icon ng-if="!search">search</md-icon>
+									<md-icon ng-if="search">close</md-icon>
 									<md-tooltip>
 											Abrir pesquisa
 									</md-tooltip>
@@ -102,6 +107,7 @@
 <script src="js/controllers/homeController/homeController.js"></script>
 <script src="js/controllers/loginController/loginController.js"></script>
 <script src="js/controllers/novoUsuarioController/novoUsuarioController.js"></script>
+<script src="js/controllers/painelAdminController/painelAdminController.js"></script>
 <!-- Services -->
 <script src="js/services/generalService/generalService.js"></script>
 
