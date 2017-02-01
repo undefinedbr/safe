@@ -34,14 +34,14 @@
 			});
 		};
 
-		AutomoveisController.prototype.showDialog = function(ev, pessoa) {
+		AutomoveisController.prototype.showDialog = function(ev, automovel) {
 			var self = this;
 			self.dialogService.openDialog(
-				'partials/dialog/veiculos.html', 'AutomoveisDialogController',
-				(function(pessoa){
-					self.veiculos.push(pessoa);
+				'partials/dialog/automoveis.html', 'AutomoveisDialogController',
+				(function(automovel){
+					self.veiculos.push(automovel);
 					self.showToast.showSimpleToast('Alterações cadastrados com sucesso.', '');
-				}), ev, {pessoa: pessoa, userLogged: self.userLogged}, 
+				}), ev, {automovel: automovel, userLogged: self.userLogged}, 
 				self.$scope
 			)
 		};

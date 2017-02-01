@@ -13,6 +13,19 @@
 		<md-dialog-content>
 		<div layout-gt-sm="row" layout-padding>
 			<md-input-container class="md-block" flex-gt-sm>
+				<label>Placa</label>
+				<input md-maxlength="30" required name="placa" ng-model="ctrl.automovel.placa" />
+
+				<div ng-messages="formCadastro.placa.$error">
+					<div ng-message="required">Informe a placa.</div>
+				</div>
+			</md-input-container>
+
+			<div flex="5" hide-xs hide-sm>
+				<!-- Spacer //-->
+			</div>
+			
+			<md-input-container class="md-block" flex-gt-sm>
 				<label>Modelo</label>
 				<input md-maxlength="30" required name="modelo" ng-model="ctrl.automovel.modelo" />
 
@@ -21,18 +34,6 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
-
-			<md-input-container class="md-block" flex-gt-sm>
-				<label>Placa</label>
-				<input md-maxlength="30" required name="placa" ng-model="ctrl.automovel.placa" />
-
-				<div ng-messages="formCadastro.placa.$error">
-					<div ng-message="required">Informe a placa.</div>
-				</div>
-			</md-input-container>
 
 		</div>
 

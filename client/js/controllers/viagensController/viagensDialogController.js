@@ -6,13 +6,17 @@
 (function (angular) {
 	'use strict';
 	var ViagensDialogController = (function () {
-		function ViagensDialogController($mdDialog, locals,showToast, httpService) {
+		function ViagensDialogController($mdDialog, locals,showToast, httpService, $location, $q, $timeout) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
 			self.viagem				= locals.viagem ? locals.viagem : {};
 			self.showToast			= showToast;
 			self.httpService		= httpService;
 			self.userLogged 		= locals.userLogged;
+			self.$location			= $location;
+			self.$q 				= $q;
+			self.$timeout 			= $timeout;
+			self.passageiros 		= self.viagem.passageiros ? self.viagem.passageiros : []; 
 			// map object
 			self.map = {
 				control: {},
@@ -41,6 +45,13 @@
 				destination: "Chopinzinho, Parana",
 				showList: true
 			}
+			if (self.viagem.origem) {
+				self.directions.origin = self.viagem.origem;
+				self.directions.destination = self.viagem.destino;
+				self.passageiros = JSON.parse(self.viagem.passageiros);
+				self.getDirections();
+			}
+			self.getFamilia(self.userLogged);
 		}
 
 		ViagensDialogController.prototype.hide = function() {
@@ -51,15 +62,14 @@
 			this.$mdDialog.cancel();
 		};
 
-		ViagensDialogController.prototype.save = function(viagem) {
-			var self = this;
-			viagem = {
-				distancia : self.directionsDisplay.directions.routes[0].legs[0].distance.text,
-				duracao : self.directionsDisplay.directions.routes[0].legs[0].duration.text,
-				origem : self.directionsDisplay.directions.routes[0].legs[0].start_address,
-				destino : self.directionsDisplay.directions.routes[0].legs[0].end_address,
-				pessoa: self.userLogged._id
-			}
+		ViagensDialogController.prototype.save = function() {
+			var self = this, viagem = {};
+			viagem.distancia = self.directionsDisplay.directions.routes[0].legs[0].distance.text;
+			viagem.duracao = self.directionsDisplay.directions.routes[0].legs[0].duration.text;
+			viagem.origem = self.directionsDisplay.directions.routes[0].legs[0].start_address;
+			viagem.destino = self.directionsDisplay.directions.routes[0].legs[0].end_address;
+			viagem.pessoa= self.userLogged._id;
+			viagem.passageiros = JSON.stringify(self.passageiros);
 
 			self.httpService.post(viagem, 'viagens').then(function(res) {
 				self.showToast.showSimpleToast('cadatrado realizado com sucesso.');
@@ -86,13 +96,80 @@
 					self.showToast.showSimpleToast('Não foi possível carregar o mapa!');
 				}
 			});
-		}
+		};
+
+		/**
+		 * Busca na base de dados os integrantes cadastrados como família,
+		 * para o usuário logado.
+		 **/
+		ViagensDialogController.prototype.getFamilia = function(pessoa){
+			var self = this;
+			self.httpService.get('familia?id='+pessoa._id).then(function(res) {
+				self.familia = res.data.map(function (pessoa) {
+					return {
+						value: pessoa.nome.toLowerCase(),
+						display: pessoa
+					}
+				});
+			});
+		};
+
+		ViagensDialogController.prototype.novo = function() {
+			this.$mdDialog.cancel();
+			this.$location.url('familia');
+		};
+
+		/**
+		 * Procura por familiares
+		 */
+		ViagensDialogController.prototype.querySearch = function (query) {
+			var self = this,
+			results = query ? self.familia.filter( createFilterFor(query) ) : self.familia,
+			deferred = self.$q.defer();
+			self.$timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
+			return deferred.promise;
+		};
+
+		/**
+		 * Cria um filtro para a função de query.
+		 */
+		ViagensDialogController.prototype.createFilterFor = function(query) {
+			var self = this;
+			var lowercaseQuery = angular.lowercase(query);
+
+			return function filterFn(pessoa) {
+				return (pessoa.value.indexOf(lowercaseQuery) === 0);
+			};
+
+		};
+
+		/**
+		 * Adiciona um novo passageiro na lista.
+		 */
+		ViagensDialogController.prototype.adicionaPassageiro = function(passageiro) {
+			if (passageiro)
+				this.passageiros.push(passageiro);
+		};
+
+		/**
+		 * Remove um passageiro da lista.
+		 */
+		ViagensDialogController.prototype.removePassageiro = function(passageiro) {
+			var self = this;
+			for (var i = self.passageiros.length - 1; i >= 0; i--) {
+				if (self.passageiros[i]._id = passageiro._id)
+					self.passageiros.split(i, 1);
+			}
+		};
 
 		ViagensDialogController.$inject = [
 			'$mdDialog',
 			'locals',
 			'showToast',
-			'httpService'
+			'httpService',
+			'$location',
+			'$q',
+			'$timeout'
 		];
 		
 		return ViagensDialogController;
