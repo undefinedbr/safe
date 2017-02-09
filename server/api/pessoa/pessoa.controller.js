@@ -8,6 +8,7 @@ var jwt    = require('jsonwebtoken');
 exports.index = function(req, res) {
 	Pessoa.find(function (err, pessoas) {
 		if(err) { return handleError(res, err); }
+		console.log(pessoas);
 		return res.status(200).json(pessoas);
 	});
 };

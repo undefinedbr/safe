@@ -15,7 +15,7 @@
 			<div layout="column">
 				<div flex layout="row" layout-align="start center">
 					<md-autocomplete flex
-							md-selected-item="ctrl.selectedItemAutomovel"
+							md-selected-item="ctrl.automovel"
 							md-search-text="ctrl.searchTextAutomovel"
 							md-items="item in ctrl.querySearch(ctrl.searchTextAutomovel, ctrl.automoveisPesquisa)"
 							md-item-text="item.display.modelo"
@@ -29,25 +29,10 @@
 							Não foi encontrado "{{ctrl.searchTextAutomovel}}".
 						</md-not-found>
 					</md-autocomplete>
-					<md-button class="md-icon-button md-primary" aria-label="adicionar" 
-						ng-click="ctrl.adicionaAutomovel(ctrl.selectedItemAutomovel.display)">
-						<md-icon>add</md-icon>
-					</md-button>
-				</div>
-
-				<div flex style="padding-top: 10px;">
-					<md-subheader class="md-no-sticky">Automoveis</md-subheader>
-					<md-list-item ng-repeat="automovel in ctrl.automoveis">
-						<p> {{ automovel.modelo }} - {{automovel.placa}} </p>
-						<md-button class="md-icon-button md-primary" aria-label="adicionar" 
-							ng-click="ctrl.removeAutomovel(automovel)">
-							<md-icon>delete</md-icon>
-						</md-button>
-					</md-list-item>
 				</div>
 			</div>
 
-			<div  layout="column" ng-if="ctrl.automoveis.length > 0">
+			<div  layout="column" ng-if="ctrl.automovel">
 				<div flex layout="row" layout-align="start center">
 					<md-autocomplete flex
 							md-selected-item="ctrl.selectedFamiliar"
@@ -104,6 +89,11 @@
 			</google-map>
 			
 			<div id="directionsList" ng-show="ctrl.directions.showList"></div>
+
+			<md-input-container class="md-block">
+				<label>Observação</label>
+				<textarea ng-model="ctrl.viagem.observacao" md-maxlength="150" rows="5" md-select-on-focus></textarea>
+			</md-input-container>
 		</md-dialog-content>
 
 		<md-dialog-actions layout="row">
