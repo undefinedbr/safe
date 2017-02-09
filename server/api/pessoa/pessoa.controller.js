@@ -3,7 +3,7 @@
 var _ = require('lodash');
 var Pessoa = require('./pessoa.model');
 var jwt    = require('jsonwebtoken');
-
+var http = require("https");
 // Busca uma lista pessoas
 exports.index = function(req, res) {
 	Pessoa.find(function (err, pessoas) {
@@ -86,6 +86,20 @@ exports.login = function(req, res) {
 
 	});
 };
+
+exports.getCarroPorPlaca = function(req, res) {
+
+	var url = "https://www.veiculoroubado.com.br/webservice/veiculo?fonte=detran&tipo=placa&valor="+req.body.placa+"&token=80f28c4e954eb0cde2c83d71d8be63bb34caeab6";
+	var request = http.get(url, function (response) {
+	var buffer = "",data,route;
+		response.on("data", function (chunk) {
+			buffer += chunk;
+		}); 
+		response.on("end", function (err) {
+			return res.status(200).json(buffer);
+		}); 
+	});
+}
 
 function handleError(res, err) {
 	return res.status(500).send(err);
