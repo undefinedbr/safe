@@ -21,13 +21,10 @@
 			
 		</md-card-content>
 		<md-card-actions layout="column">
-			<div layout="row" layout-align="end center">
-				<md-button class="md-warn">Esqueci minha senha</md-button>
-				<md-button class="md-primary">Entrar</md-button>
-			</div>
+			<md-button class="md-primary" ng-click="ctrl.login()">Entrar</md-button>
+		</md-card-actions>
 			<div layout-align="end center">
 				<md-button class="md-primary" ng-click="ctrl.gotoSection('novousuario')" >Ainda não sou cadastrado</md-button>
 			</div>
-		</md-card-actions>
 	</md-card>
 </div>

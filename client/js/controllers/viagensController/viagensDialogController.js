@@ -16,7 +16,8 @@
 			self.$location			= $location;
 			self.$q 				= $q;
 			self.$timeout 			= $timeout;
-			self.passageiros 		= self.viagem.passageiros ? self.viagem.passageiros : []; 
+			self.passageiros 		= self.viagem.passageiros ? JSON.parse(self.viagem.passageiros) : []; 
+			self.automoveis 		= self.viagem.veiculo ? [JSON.parse(self.viagem.veiculo)] : []; 
 			// map object
 			self.map = {
 				control: {},
@@ -52,6 +53,7 @@
 				self.getDirections();
 			}
 			self.getFamilia(self.userLogged);
+			self.getAutomovel(self.userLogged);
 		}
 
 		ViagensDialogController.prototype.hide = function() {
@@ -70,6 +72,7 @@
 			viagem.destino = self.directionsDisplay.directions.routes[0].legs[0].end_address;
 			viagem.pessoa= self.userLogged._id;
 			viagem.passageiros = JSON.stringify(self.passageiros);
+			viagem.veiculo = JSON.stringify(self.automoveis[0]);
 
 			self.httpService.post(viagem, 'viagens').then(function(res) {
 				self.showToast.showSimpleToast('cadatrado realizado com sucesso.');
@@ -105,10 +108,26 @@
 		ViagensDialogController.prototype.getFamilia = function(pessoa){
 			var self = this;
 			self.httpService.get('familia?id='+pessoa._id).then(function(res) {
-				self.familia = res.data.map(function (pessoa) {
+				self.familiares = res.data.map(function (pessoa) {
 					return {
 						value: pessoa.nome.toLowerCase(),
 						display: pessoa
+					}
+				});
+			});
+		};
+
+		/**
+		 * Busca na base de dados os integrantes cadastrados como família,
+		 * para o usuário logado.
+		 **/
+		ViagensDialogController.prototype.getAutomovel = function(pessoa){
+			var self = this;
+			self.httpService.get('veiculos?id='+pessoa._id).then(function(res) {
+				self.automoveisPesquisa = res.data.map(function (veiculo) {
+					return {
+						value: veiculo.modelo.toLowerCase() + veiculo.placa.toLowerCase(),
+						display: veiculo
 					}
 				});
 			});
@@ -122,9 +141,9 @@
 		/**
 		 * Procura por familiares
 		 */
-		ViagensDialogController.prototype.querySearch = function (query) {
+		ViagensDialogController.prototype.querySearch = function (query, list) {
 			var self = this,
-			results = query ? self.familia.filter( createFilterFor(query) ) : self.familia,
+			results = query ? list.filter( self.createFilterFor(query) ) : list,
 			deferred = self.$q.defer();
 			self.$timeout(function () { deferred.resolve( results ); }, Math.random() * 1000, false);
 			return deferred.promise;
@@ -147,8 +166,13 @@
 		 * Adiciona um novo passageiro na lista.
 		 */
 		ViagensDialogController.prototype.adicionaPassageiro = function(passageiro) {
-			if (passageiro)
-				this.passageiros.push(passageiro);
+			if (passageiro) {
+				if (this.passageiros.length < this.automoveis[0].quantidadeLugares) {
+					this.passageiros.push(passageiro);
+				} else {
+					this.showToast.showSimpleToast('Seu automóvel tem capacidade para apenas '+ this.automoveis[0].quantidadeLugares+' passageiros.');
+				}
+			}
 		};
 
 		/**
@@ -158,7 +182,31 @@
 			var self = this;
 			for (var i = self.passageiros.length - 1; i >= 0; i--) {
 				if (self.passageiros[i]._id = passageiro._id)
-					self.passageiros.split(i, 1);
+					self.passageiros.splice(i, 1);
+			}
+		};
+
+		/**
+		 * Adiciona um novo automovel na lista.
+		 */
+		ViagensDialogController.prototype.adicionaAutomovel = function(automovel) {
+			if (automovel) {
+				if (this.automoveis.length == 0) {
+					this.automoveis.push(automovel);
+				} else {
+					this.showToast.showSimpleToast('É permitido apenas um altomóvel por viagem!');
+				}
+			}
+		};
+
+		/**
+		 * Remove um automovel da lista.
+		 */
+		ViagensDialogController.prototype.removeAutomovel = function(automovel) {
+			var self = this;
+			for (var i = self.automoveis.length - 1; i >= 0; i--) {
+				if (self.automoveis[i]._id = automovel._id)
+					self.automoveis.splice(i, 1);
 			}
 		};
 

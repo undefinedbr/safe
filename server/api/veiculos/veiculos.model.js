@@ -8,7 +8,8 @@ var VeiculosSchema = new Schema({
 	modelo: String,
 	cor: String,
 	ano: String,
-	cidade: String
+	cidade: String,
+	quantidadeLugares: String
 });
 
 module.exports = mongoose.model('Veiculos', VeiculosSchema);

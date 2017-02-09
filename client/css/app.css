@@ -316,3 +316,7 @@ md-input-container  {
     padding-bottom: 0px !important;
     margin-bottom: 0px !important;
 }
+
+md-select-menu md-content._md {
+    background-color: #fff !important;
+}

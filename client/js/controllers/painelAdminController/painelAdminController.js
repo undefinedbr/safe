@@ -29,6 +29,17 @@
 			});
 		};
 
+		PainelAdminController.prototype.showDialog = function(ev, viagem) {
+			var self = this;
+			self.dialogService.openDialog(
+				'partials/dialog/painelAdmin.html', 'PainelAdminDialogController',
+				(function(){
+					self.showToast.showSimpleToast(':).', '');
+				}), ev, {viagem: viagem, userLogged: self.userLogged}, 
+				self.$scope
+			)
+		};
+
 		PainelAdminController.$inject = [
 			'$location',
 			'$mdDialog',

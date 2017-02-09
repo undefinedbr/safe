@@ -21,9 +21,7 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 			
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Modelo</label>
@@ -31,6 +29,17 @@
 
 				<div ng-messages="formCadastro.modelo.$error">
 					<div ng-message="required">Modelo é necessário.</div>
+				</div>
+			</md-input-container>
+
+			<div flex="5" hide-xs hide-sm></div>
+
+			<md-input-container class="md-block" flex-gt-sm>
+				<label>Quantidade de lugares</label>
+				<input name="quantidadeLugares" type="number" ng-model="ctrl.automovel.quantidadeLugares" required/>
+
+				<div ng-messages="formCadastro.quantidadeLugares.$error">
+					<div ng-message="required">Quantidade é necessário.</div>
 				</div>
 			</md-input-container>
 
@@ -50,9 +59,7 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Ano</label>
@@ -63,9 +70,7 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Cidade</label>
@@ -85,7 +90,7 @@
 				Cancelar
 			</md-button>
 			<md-button ng-disabled="formCadastro.$invalid" ng-click="ctrl.save(ctrl.automovel)">
-				Savlar
+				Salvar
 			</md-button>
 		</md-dialog-actions>
 	</form>

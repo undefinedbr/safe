@@ -29,6 +29,12 @@
 					icon: 'card_travel',
 				}
 			];
+
+			$scope.$on('userLogged', function(ev, user){
+				self.userLogged = user;
+				self.userLogged.foto = 'img/60.png';
+				$rootScope.userLogged = self.userLogged;
+			})
 		}
 
 		MainController.prototype.toggleSidenav = function (menu) {
