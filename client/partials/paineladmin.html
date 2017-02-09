@@ -4,7 +4,7 @@
 		<section class="back-fff">
 			<md-subheader class="md-primary">Viagens</md-subheader>
 			<md-list layout-padding>
-				<md-list-item class="md-3-line" ng-repeat="item in ctrl.viagens"
+				<md-list-item class="md-3-line" ng-repeat="item in ctrl.viagens | filter:$rootScope.queryGeral"
 				 ng-click="ctrl.showDialog($event, item)">
 					<div class="md-list-item-text">
 						<h3>{{item.origem}} / {{item.destino}}</h3>
@@ -16,10 +16,6 @@
 				</md-list-item>
 			</md-list>
 		</section>
-
-		<md-button style="position: fixed;bottom: 5px;right: 5px;" class="md-fab md-primary " aria-label="Adicionar novo" ng-click="ctrl.showDialog($event)">
-			<md-icon>add</md-icon>
-		</md-button>
 	</md-content>
 </div>
 </div>

@@ -21,9 +21,7 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Posição na familia</label>
@@ -40,19 +38,21 @@
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Tipo sanguineo</label>
-				<input name="tiposanguineo" ng-model="ctrl.pessoa.tiposanguineo"
-							 required/>
-
-				<div ng-messages="formCadastro.tiposanguineo.$error">
-					<div ng-message-exp="required">
-						Tipo sanguineo deve ser informado.
-					</div>
-				</div>
+				<md-select ng-model="ctrl.pessoa.tiposanguineo">
+					<md-option ng-repeat="tipo in [{descricao:'A+'},
+						{descricao:'A-'},
+						{descricao:'B+'},
+						{descricao:'B-'},
+						{descricao:'AB+'},
+						{descricao:'AB-'},
+						{descricao:'O+'},
+						{descricao:'O-'}]" 
+					ng-value="tipo">
+					{{tipo.descricao}}
+				</md-select>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>CPF</label>
@@ -74,9 +74,7 @@
 				</md-select>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Altura</label>
@@ -87,9 +85,7 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Idade</label>
@@ -100,9 +96,7 @@
 				</div>
 			</md-input-container>
 
-			<div flex="5" hide-xs hide-sm>
-				<!-- Spacer //-->
-			</div>
+			<div flex="5" hide-xs hide-sm></div>
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>Peso</label>
@@ -122,7 +116,7 @@
 				Cancelar
 			</md-button>
 			<md-button ng-disabled="formCadastro.$invalid" ng-click="ctrl.save(ctrl.pessoa)">
-				Savlar
+				Salvar
 			</md-button>
 		</md-dialog-actions>
 	</form>

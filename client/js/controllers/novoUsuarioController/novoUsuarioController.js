@@ -22,7 +22,7 @@
 			var self = this;
 			self.httpService.post(pessoa, 'pessoas').then(function(res) {
 				self.showToast.showSimpleToast(res.data.nome+ ', cadatrado com sucesso.');
-				self.$rootScope.userLogged	= res.data;
+				self.$scope.$emit('userLogged',res.data);
 				self.$location.url('home');
 			});
 		};

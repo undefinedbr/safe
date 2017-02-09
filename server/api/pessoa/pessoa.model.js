@@ -11,7 +11,6 @@ var PessoaSchema = new Schema({
 	peso: Number,
 	idade: Number,
 	posicaoVeiculo: String,
-	posicaoFamiliar: String,
 	password: String,
 	foto:String
 });

@@ -1,0 +1,99 @@
+<md-dialog aria-label="Cadastro de automoveis">
+	<form ng-cloak name="formCadastro">
+		<md-toolbar>
+			<div class="md-toolbar-tools">
+				<h2>Detalhes da viagem</h2>
+				<span flex></span>
+				<md-button class="md-icon-button" ng-click="ctrl.cancel()">
+					<md-icon aria-label="Fechar janela">close</md-icon>
+				</md-button>
+			</div>
+		</md-toolbar>
+
+		<md-dialog-content style="background-color: #eeeded;">
+			<md-whiteframe class="md-whiteframe-1dp" layout="column" layout-padding layout-align="center center">
+				<div class="md-headline">{{ctrl.viagem.destino}} - {{ctrl.viagem.origem}} {{ctrl.viagem.distancia}}</div>
+				<div class="md-subhead">{{ctrl.viagem.duracao}}</div>
+			</md-whiteframe>
+			<section>
+				<md-subheader class="md-primary">Automóvel</md-subheader>
+				<md-card flex>
+					<md-card-header>
+						<md-card-avatar>
+							<md-icon class="md-avatar-icon">car</md-icon>
+						</md-card-avatar>
+						<md-card-header-text>
+							<span class="md-title">{{ctrl.viagem.veiculo.modelo}}</span>
+							<span class="md-subhead">{{ctrl.viagem.veiculo.placa}}</span>
+						</md-card-header-text>
+					</md-card-header>
+					<md-card-content>
+						<div flex layout-align="space-around center" layout="row">
+							<div flex layout-align="start center">Ano:</div>
+							<div flex layout-align="start center">{{ctrl.viagem.veiculo.ano}}</div>
+						</div>
+						<div flex layout-align="space-around center" layout="row">
+							<div flex layout-align="start center">Cidade:</div>
+							<div flex layout-align="start center">{{ctrl.viagem.veiculo.cidade}}</div>
+						</div>
+						<div flex layout-align="space-around center" layout="row">
+							<div flex layout-align="start center">Cor:</div>
+							<div flex layout-align="start center">{{ctrl.viagem.veiculo.cor}}</div>
+						</div>
+						<div flex layout-align="space-around center" layout="row">
+							<div flex layout-align="start center">Modelo:</div>
+							<div flex layout-align="start center">{{ctrl.viagem.veiculo.modelo}}</div>
+						</div>
+						<div flex layout-align="space-around center" layout="row">
+							<div flex layout-align="start center">Placa:</div>
+							<div flex layout-align="start center">{{ctrl.viagem.veiculo.placa}}</div>
+						</div>
+						<div flex layout-align="space-around center" layout="row">
+							<div flex layout-align="start center">QuantidadeLugares:</div>
+							<div flex layout-align="start center">{{ctrl.viagem.veiculo.quantidadeLugares}}</div>
+						</div>
+					</md-card-content>
+				</md-card>
+			</section>
+			<section>
+				<md-subheader class="md-primary">Passageiros</md-subheader>
+				<div flex layout="row" layout-xs="column" layout-sm="column" >
+					<md-card flex ng-repeat="passageiro in ctrl.viagem.passageiros">
+						<md-card-header>
+							<md-card-avatar>
+								<img ng-src="{{passageiro.foto}}"/>
+							</md-card-avatar>
+							<md-card-header-text>
+								<span class="md-title">{{passageiro.nome}}</span>
+								<span class="md-subhead">Filho</span>
+							</md-card-header-text>
+						</md-card-header>
+						<md-card-content>
+							<div flex layout-align="space-around center" layout="row">
+								<div flex layout-align="start center">Altura:</div>
+								<div flex layout-align="start center">{{passageiro.altura}}</div>
+							</div>
+							<div flex layout-align="space-around center" layout="row">
+								<div flex layout-align="start center">Cpf:</div>
+								<div flex layout-align="start center">{{passageiro.cpf}}</div>
+							</div>
+							<div flex layout-align="space-around center" layout="row">
+								<div flex layout-align="start center">Idade:</div>
+								<div flex layout-align="start center">{{passageiro.idade}}</div>
+							</div>
+							<div flex layout-align="space-around center" layout="row">
+								<div flex layout-align="start center">Peso:</div>
+								<div flex layout-align="start center">{{passageiro.peso}}</div>
+							</div>
+							<div flex layout-align="space-around center" layout="row">
+								<div flex layout-align="start center">Sexo:</div>
+								<div flex layout-align="start center">{{passageiro.sexo}}</div>
+							</div>
+						</md-card-content>
+					</md-card>
+				</div>
+			</section>
+
+		</md-dialog-content>
+	</form>
+</md-dialog>

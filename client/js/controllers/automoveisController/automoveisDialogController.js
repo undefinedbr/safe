@@ -6,12 +6,16 @@
 (function (angular) {
 	'use strict';
 	var AutomoveisDialogController = (function () {
-		function AutomoveisDialogController($mdDialog, locals, httpService, showToast) {
+		function AutomoveisDialogController($mdDialog, locals, httpService, showToast, $http) {
 			var self 				= this;
 			self.$mdDialog			= $mdDialog;
 			self.automóvel				= locals.automóvel ? locals.automóvel : {};
 			self.httpService		= httpService;
 			self.showToast 			= showToast;
+			self.$http				= $http;
+
+			/*var result = self.getAutoByPlaca('NGH5928');*/
+			//console.log(result);
 		}
 
 		AutomoveisDialogController.prototype.hide = function() {
@@ -29,13 +33,25 @@
 				self.$mdDialog.hide(res.data);
 			});
 		};
+
+		/*AutomoveisDialogController.prototype.getAutoByPlaca = function(placa) {
+			var self = this, param = {
+					fonte:'detran',tipo:'placa',
+					valor: placa.toUpperCase(),token :'80f28c4e954eb0cde2c83d71d8be63bb34caeab6'
+			}
+			self.$http.defaults.useXDomain = true;
+			self.$http.get('http://www.veiculoroubado.com.br/webservice/veiculo?fonte=detran&tipo=placa&valor=NGH5928&token=80f28c4e954eb0cde2c83d71d8be63bb34caeab6').then(function(res){
+				console.log(res.data);
+			})
+		}*/
 		
 
 		AutomoveisDialogController.$inject = [
 			'$mdDialog',
 			'locals',
 			'httpService',
-			'showToast'
+			'showToast',
+			'$http'
 		];
 		
 		return AutomoveisDialogController;

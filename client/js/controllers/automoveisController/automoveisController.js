@@ -16,7 +16,7 @@
 			self.userLogged	= $rootScope.userLogged;
 
 			if (self.userLogged) {
-				self.getFamilia(self.userLogged);
+				self.getAutomoveis(self.userLogged);
 			} else {
 				self.showToast.showSimpleToast('Você deve estar logado para vizualizar esta tela.', '');
 				$location.url('login')
@@ -27,21 +27,21 @@
 		 * Busca na base de dados os integrantes cadastrados como família,
 		 * para o usuário logado.
 		 **/
-		AutomoveisController.prototype.getFamilia = function(pessoa){
+		AutomoveisController.prototype.getAutomoveis = function(pessoa){
 			var self = this;
 			self.httpService.get('veiculos?id='+pessoa._id).then(function(res) {
 				self.automoveis = res.data;
 			});
 		};
 
-		AutomoveisController.prototype.showDialog = function(ev, pessoa) {
+		AutomoveisController.prototype.showDialog = function(ev, automovel) {
 			var self = this;
 			self.dialogService.openDialog(
-				'partials/dialog/veiculos.html', 'AutomoveisDialogController',
-				(function(pessoa){
-					self.veiculos.push(pessoa);
+				'partials/dialog/automoveis.html', 'AutomoveisDialogController',
+				(function(automovel){
+					self.automoveis.push(automovel);
 					self.showToast.showSimpleToast('Alterações cadastrados com sucesso.', '');
-				}), ev, {pessoa: pessoa, userLogged: self.userLogged}, 
+				}), ev, {automovel: automovel, userLogged: self.userLogged}, 
 				self.$scope
 			)
 		};

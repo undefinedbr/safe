@@ -1,5 +1,5 @@
 <form ng-cloak name="formCadastro">
-	<div layout="column" flex layout-fill ng-cloak layout-align="center center">
+	<div layout="column" flex layout-fill ng-cloak>
 		<md-card layout-align="center center" layout-padding>
 			<img class="md-avatar" ng-src="{{ctrl.pessoa.foto}}" alt="Washed Out">
 			<md-card-title>
@@ -18,38 +18,28 @@
 						</div>
 					</md-input-container>
 
-					<div flex="5" hide-xs hide-sm>
-						<!-- Spacer //-->
-					</div>
-
-					<md-input-container class="md-block" flex-gt-sm>
-						<label>Posição na familia</label>
-						<input md-maxlength="30" required name="posicaoFamilia" ng-model="ctrl.pessoa.posicaoFamilia" />
-
-						<div ng-messages="formCadastro.posicaoFamilia.$error">
-							<div ng-message="required">Informe a poisição na familia.</div>
-						</div>
-					</md-input-container>
+					<div flex="5" hide-xs hide-sm></div>
 
 				</div>
 
 				<div layout-gt-sm="row" layout-padding>
-
 					<md-input-container class="md-block" flex-gt-sm>
 						<label>Tipo sanguineo</label>
-						<input name="tiposanguineo" ng-model="ctrl.pessoa.tiposanguineo"
-									 required/>
-
-						<div ng-messages="formCadastro.tiposanguineo.$error">
-							<div ng-message-exp="required">
-								Tipo sanguineo deve ser informado.
-							</div>
-						</div>
+						<md-select ng-model="ctrl.pessoa.tiposanguineo">
+							<md-option ng-repeat="tipo in [{descricao:'A+'},
+								{descricao:'A-'},
+								{descricao:'B+'},
+								{descricao:'B-'},
+								{descricao:'AB+'},
+								{descricao:'AB-'},
+								{descricao:'O+'},
+								{descricao:'O-'}]" 
+							ng-value="tipo">
+							{{tipo.descricao}}
+						</md-select>
 					</md-input-container>
 
-					<div flex="5" hide-xs hide-sm>
-						<!-- Spacer //-->
-					</div>
+					<div flex="5" hide-xs hide-sm></div>
 
 					<md-input-container class="md-block" flex-gt-sm>
 						<label>CPF</label>
@@ -65,15 +55,13 @@
 					<md-input-container class="md-block" flex-gt-sm>
 						<label>Sexo</label>
 						<md-select ng-model="ctrl.pessoa.sexo">
-							<md-option ng-repeat="sexo in [{value:0, descricao:'MASCULINO'}, {value:1, descricao:'FEMININO'}]" 
-							ng-value="sexo.value">
+							<md-option ng-repeat="sexo in [{descricao:'MASCULINO'}, {descricao:'FEMININO'}]" 
+							ng-value="sexo.descricao">
 							{{sexo.descricao}}
 						</md-select>
 					</md-input-container>
 
-					<div flex="5" hide-xs hide-sm>
-						<!-- Spacer //-->
-					</div>
+					<div flex="5" hide-xs hide-sm></div>
 
 					<md-input-container class="md-block" flex-gt-sm>
 						<label>Altura</label>
@@ -84,9 +72,7 @@
 						</div>
 					</md-input-container>
 
-					<div flex="5" hide-xs hide-sm>
-						<!-- Spacer //-->
-					</div>
+					<div flex="5" hide-xs hide-sm></div>
 
 					<md-input-container class="md-block" flex-gt-sm>
 						<label>Idade</label>
@@ -97,9 +83,7 @@
 						</div>
 					</md-input-container>
 
-					<div flex="5" hide-xs hide-sm>
-						<!-- Spacer //-->
-					</div>
+					<div flex="5" hide-xs hide-sm></div>
 
 					<md-input-container class="md-block" flex-gt-sm>
 						<label>Peso</label>

@@ -10,8 +10,78 @@
 			</div>
 		</md-toolbar>
 
-		<md-dialog-content>
-			<md-content layout="column" layout-padding>
+		<md-dialog-content layout-padding>
+
+			<div layout="column">
+				<div flex layout="row" layout-align="start center">
+					<md-autocomplete flex
+							md-selected-item="ctrl.selectedItemAutomovel"
+							md-search-text="ctrl.searchTextAutomovel"
+							md-items="item in ctrl.querySearch(ctrl.searchTextAutomovel, ctrl.automoveisPesquisa)"
+							md-item-text="item.display.modelo"
+							md-min-length="0"
+							placeholder="Pesquise poro verículos">
+						<md-item-template>
+							<span md-highlight-text="ctrl.searchTextAutomovel" md-highlight-flags="^i">{{item.display.modelo}} - {{item.display.placa}}</span>
+						</md-item-template>
+						<md-not-found layout="column" ng-click="ctrl.novo()">
+							<a ng-click="ctrl.novo()">Adicione um novo!</a>
+							Não foi encontrado "{{ctrl.searchTextAutomovel}}".
+						</md-not-found>
+					</md-autocomplete>
+					<md-button class="md-icon-button md-primary" aria-label="adicionar" 
+						ng-click="ctrl.adicionaAutomovel(ctrl.selectedItemAutomovel.display)">
+						<md-icon>add</md-icon>
+					</md-button>
+				</div>
+
+				<div flex style="padding-top: 10px;">
+					<md-subheader class="md-no-sticky">Automoveis</md-subheader>
+					<md-list-item ng-repeat="automovel in ctrl.automoveis">
+						<p> {{ automovel.modelo }} - {{automovel.placa}} </p>
+						<md-button class="md-icon-button md-primary" aria-label="adicionar" 
+							ng-click="ctrl.removeAutomovel(automovel)">
+							<md-icon>delete</md-icon>
+						</md-button>
+					</md-list-item>
+				</div>
+			</div>
+
+			<div  layout="column" ng-if="ctrl.automoveis.length > 0">
+				<div flex layout="row" layout-align="start center">
+					<md-autocomplete flex
+							md-selected-item="ctrl.selectedFamiliar"
+							md-search-text="ctrl.searchTextFamiliar"
+							md-items="item in ctrl.querySearch(ctrl.searchTextFamiliar, ctrl.familiares)"
+							md-item-text="item.display.nome"
+							md-min-length="0"
+							placeholder="Pesquise por integrantes da família ou amigos">
+						<md-item-template>
+							<span md-highlight-text="ctrl.searchTextFamiliar" md-highlight-flags="^i">{{item.display.nome}}</span>
+						</md-item-template>
+						<md-not-found layout="column" ng-click="ctrl.novo()">
+							<a ng-click="ctrl.novo()">Adicione um novo!</a>
+							Não foi encontrado "{{ctrl.searchTextFamiliar}}".
+						</md-not-found>
+					</md-autocomplete>
+					<md-button class="md-icon-button md-primary" aria-label="adicionar" 
+						ng-click="ctrl.adicionaPassageiro(ctrl.selectedFamiliar.display)">
+						<md-icon>add</md-icon>
+					</md-button>
+				</div>
+
+				<div flex style="padding-top: 10px;">
+					<md-subheader class="md-no-sticky">Passageiros</md-subheader>
+					<md-list-item ng-repeat="passageiro in ctrl.passageiros">
+						<p> {{ passageiro.nome }} </p>
+						<md-button class="md-icon-button md-primary" aria-label="adicionar" 
+							ng-click="ctrl.removePassageiro(passageiro)">
+							<md-icon>delete</md-icon>
+						</md-button>
+					</md-list-item>
+				</div>
+			</div>
+
 			<div layout="row" layout-align="start center">
 				<div flex="75" layout="column">
 					<md-input-container>
@@ -42,7 +112,7 @@
 				Cancelar
 			</md-button>
 			<md-button ng-disabled="formCadastro.$invalid" ng-click="ctrl.save(ctrl.viagem)">
-				Savlar
+				Salvar
 			</md-button>
 		</md-dialog-actions>
 	</form>
