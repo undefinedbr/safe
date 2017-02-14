@@ -56,7 +56,7 @@
 
 			<md-input-container class="md-block" flex-gt-sm>
 				<label>CPF</label>
-				<input name="cpf" ng-model="ctrl.pessoa.cpf" required/>
+				<input name="cpf" ng-model="ctrl.pessoa.cpf" ng-cpf ui-mask="999.999.999-99" required/>
 
 				<div ng-messages="formCadastro.cpf.$error">
 					<div ng-message="required">CPF é necessário.</div>

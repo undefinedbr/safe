@@ -14,7 +14,7 @@
 			self.showToast 			= showToast;
 			self.$http				= $http;
 
-			/*var result = self.getAutoByPlaca('NGH5928');*/
+			var result = self.getAutoByPlaca('NGH5928');
 			//console.log(result);
 		}
 
@@ -34,16 +34,14 @@
 			});
 		};
 
-		/*AutomoveisDialogController.prototype.getAutoByPlaca = function(placa) {
-			var self = this, param = {
-					fonte:'detran',tipo:'placa',
-					valor: placa.toUpperCase(),token :'80f28c4e954eb0cde2c83d71d8be63bb34caeab6'
-			}
-			self.$http.defaults.useXDomain = true;
-			self.$http.get('http://www.veiculoroubado.com.br/webservice/veiculo?fonte=detran&tipo=placa&valor=NGH5928&token=80f28c4e954eb0cde2c83d71d8be63bb34caeab6').then(function(res){
+		AutomoveisDialogController.prototype.getAutoByPlaca = function(placa) {
+			var self = this;
+
+			self.httpService.get('pessoas/getcarroplaca&placa='+placa).then(function(res) {
+				self.showToast.showSimpleToast(res.data);
 				console.log(res.data);
-			})
-		}*/
+			});
+		};
 		
 
 		AutomoveisDialogController.$inject = [

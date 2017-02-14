@@ -21,6 +21,8 @@
 			var self = this;
 			self.httpService.post(user, 'pessoas').then(function(res){
 				self.showToast.showSimpleToast(res.data.nome+ ', logado com sucesso.');
+				res.data.nome = 'teste';
+				res.data.email = 'teste@teste.com';
 				self.$scope.$emit('userLogged',res.data);
 				self.$location.url('home');
 			})

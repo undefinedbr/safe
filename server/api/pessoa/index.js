@@ -6,7 +6,7 @@ var controller = require('./pessoa.controller');
 var router = express.Router();
 
 router.get('/', controller.index);
-router.get('/getcarroplaca:placa', controller.getCarroPorPlaca);
+router.get('/getcarroplaca:id', controller.getVeiculoByPlaca);
 router.get('/:id', controller.show);
 router.post('/', controller.create);
 router.post('/login', controller.login);
