@@ -10,7 +10,8 @@ var ViagemSchema = new Schema({
 	destino: String,
 	pessoa:String,
 	passageiros: String,
-	veiculo:String
+	veiculo:String,
+	observacao:String
 });
 
 module.exports = mongoose.model('Viagem', ViagemSchema);

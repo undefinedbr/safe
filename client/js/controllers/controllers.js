@@ -5,5 +5,5 @@
  */
 (function(angular) {
 	'use strict';
-	angular.module('app.controllers', ['ngMaterial', 'google-maps']);
+	angular.module('app.controllers', ['ngMaterial', 'google-maps','ngCpfCnpj','ui.mask']);
 })(window.angular);

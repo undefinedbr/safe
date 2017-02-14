@@ -11,6 +11,8 @@
 			self.$mdSidenav 		= $mdSidenav;
 			self.$location  		= $location;
 			self.userLogged			= $rootScope.userLogged;
+			self.style				= {display: 'block'};
+			self.stylenone			= {display: 'none'};
 			
 			self.mainMenuItems = [
 				{

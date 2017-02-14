@@ -1,34 +1,35 @@
 body {
-		overflow: hidden;
-		background-color: #eeeded !important;
+	overflow: hidden;
+	background-color: #eeeded !important;
+	display: none;
 }
 
 ::-webkit-scrollbar {
-		width: 7px;
-		height:5px;
+	width: 7px;
+	height:5px;
 }
 
 ::-webkit-scrollbar-track-piece {
-		background-color: #EEE;
-		border-left: 1px solid #CCC
+	background-color: #EEE;
+	border-left: 1px solid #CCC
 }
 
 ::-webkit-scrollbar-thumb:horizontal,
 ::-webkit-scrollbar-thumb:vertical {
-		background-color: #BAC0C4
+	background-color: #BAC0C4
 }
 
 ::-webkit-scrollbar-thumb:horizontal:hover,
 ::-webkit-scrollbar-thumb:vertical:hover {
-		background-color: #717171
+	background-color: #717171
 }
 
 ng-view {
-		max-height: 90vh;
+	max-height: 90vh;
 }
 
 md-whiteframe {
-		background: #fff;
+	background: #fff;
 }
 
 .top-bg {

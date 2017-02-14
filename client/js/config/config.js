@@ -50,7 +50,7 @@
 			controller: 'PainelAdminController',
 			controllerAs: 'ctrl'
 		}).otherwise({
-			redirectTo: '/crud'
+			redirectTo: '/home'
 		});
 	}])
 	.run(function ($rootScope, $location) {

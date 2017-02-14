@@ -71,8 +71,9 @@
 			viagem.origem = self.directionsDisplay.directions.routes[0].legs[0].start_address;
 			viagem.destino = self.directionsDisplay.directions.routes[0].legs[0].end_address;
 			viagem.pessoa= self.userLogged._id;
+			viagem.observacao = self.viagem.observacao;
 			viagem.passageiros = JSON.stringify(self.passageiros);
-			viagem.veiculo = JSON.stringify(self.automoveis[0]);
+			viagem.veiculo = JSON.stringify(self.automovel.display);
 
 			self.httpService.post(viagem, 'viagens').then(function(res) {
 				self.showToast.showSimpleToast('cadatrado realizado com sucesso.');
@@ -167,10 +168,10 @@
 		 */
 		ViagensDialogController.prototype.adicionaPassageiro = function(passageiro) {
 			if (passageiro) {
-				if (this.passageiros.length < this.automoveis[0].quantidadeLugares) {
+				if (this.passageiros.length < this.automovel.display.quantidadeLugares) {
 					this.passageiros.push(passageiro);
 				} else {
-					this.showToast.showSimpleToast('Seu automóvel tem capacidade para apenas '+ this.automoveis[0].quantidadeLugares+' passageiros.');
+					this.showToast.showSimpleToast('Seu automóvel tem capacidade para apenas '+ this.automovel.display.quantidadeLugares+' passageiros.');
 				}
 			}
 		};
@@ -183,30 +184,6 @@
 			for (var i = self.passageiros.length - 1; i >= 0; i--) {
 				if (self.passageiros[i]._id = passageiro._id)
 					self.passageiros.splice(i, 1);
-			}
-		};
-
-		/**
-		 * Adiciona um novo automovel na lista.
-		 */
-		ViagensDialogController.prototype.adicionaAutomovel = function(automovel) {
-			if (automovel) {
-				if (this.automoveis.length == 0) {
-					this.automoveis.push(automovel);
-				} else {
-					this.showToast.showSimpleToast('É permitido apenas um altomóvel por viagem!');
-				}
-			}
-		};
-
-		/**
-		 * Remove um automovel da lista.
-		 */
-		ViagensDialogController.prototype.removeAutomovel = function(automovel) {
-			var self = this;
-			for (var i = self.automoveis.length - 1; i >= 0; i--) {
-				if (self.automoveis[i]._id = automovel._id)
-					self.automoveis.splice(i, 1);
 			}
 		};
 
