@@ -1,0 +1,23 @@
+{
+  "name": "api",
+  "authors": [
+    "Lucas Henrique de Abreu <lucasigual14@gmail.com>"
+  ],
+  "description": "",
+  "main": "index.html",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "/",
+  "dependencies": {
+    "angular": "latest",
+    "angular-messages": "latest",
+    "angular-i18n": "latest",
+    "angular-route": "latest",
+    "angular-cookies": "latest",
+    "angular-input-masks": "~2.4.0",
+    "angular-material": "^1.0.9",
+    "angular-aria": "^1.5.8",
+    "angular-animate": "^1.5.8",
+    "ng-cpf-cnpj": "^0.0.5"
+  }
+}

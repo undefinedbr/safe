@@ -10,6 +10,7 @@ var ViagemSchema = new Schema({
 	destino: String,
 	pessoa:String,
 	passageiros: String,
+	motorista: String,
 	veiculo:String,
 	observacao:String
 });

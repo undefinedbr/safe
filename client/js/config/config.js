@@ -45,10 +45,6 @@
 			templateUrl: 'partials/novousuario.html',
 			controller: 'NovoUsuarioController',
 			controllerAs: 'ctrl'
-		}).when('/paineladmin', {
-			templateUrl: 'partials/paineladmin.html',
-			controller: 'PainelAdminController',
-			controllerAs: 'ctrl'
 		}).otherwise({
 			redirectTo: '/home'
 		});

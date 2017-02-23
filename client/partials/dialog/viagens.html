@@ -13,6 +13,13 @@
 		<md-dialog-content layout-padding>
 
 			<div layout="column">
+				<md-input-container flex>
+					<label>Motorista</label>
+					<input ng-model="ctrl.userLogged.nome" required disabled>
+					<div ng-messages="formCadastro.nome.$error">
+						<div ng-message="required">Motorista é necessário.</div>
+					</div>
+				</md-input-container>
 				<div flex layout="row" layout-align="start center">
 					<md-autocomplete flex
 							md-selected-item="ctrl.automovel"
