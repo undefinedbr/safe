@@ -21,8 +21,14 @@
 			var self = this;
 			self.httpService.post(user, 'pessoas').then(function(res){
 				self.showToast.showSimpleToast(res.data.nome+ ', logado com sucesso.');
-				res.data.nome = 'teste';
+				res.data.nome = 'Teste';
 				res.data.email = 'teste@teste.com';
+				res.data.foto = 'img/60.png';
+				res.data.altura = '1.80';
+				res.data.cpf = '08595315908';
+				res.data.idade = '34';
+				res.data.peso = '80';
+				res.data.sexo = 'MASCULINO';
 				self.$scope.$emit('userLogged',res.data);
 				self.$location.url('home');
 			})

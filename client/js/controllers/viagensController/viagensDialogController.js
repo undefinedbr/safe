@@ -74,6 +74,7 @@
 			viagem.observacao = self.viagem.observacao;
 			viagem.passageiros = JSON.stringify(self.passageiros);
 			viagem.veiculo = JSON.stringify(self.automovel.display);
+			viagem.motorista = JSON.stringify(self.userLogged);
 
 			self.httpService.post(viagem, 'viagens').then(function(res) {
 				self.showToast.showSimpleToast('cadatrado realizado com sucesso.');
@@ -168,7 +169,7 @@
 		 */
 		ViagensDialogController.prototype.adicionaPassageiro = function(passageiro) {
 			if (passageiro) {
-				if (this.passageiros.length < this.automovel.display.quantidadeLugares) {
+				if ((this.passageiros.length -1 ) < this.automovel.display.quantidadeLugares) {
 					this.passageiros.push(passageiro);
 				} else {
 					this.showToast.showSimpleToast('Seu automóvel tem capacidade para apenas '+ this.automovel.display.quantidadeLugares+' passageiros.');
